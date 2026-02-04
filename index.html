@@ -1,25 +1,85 @@
-<!DOCTYPE html>
-<html lang="en-ca">
+<!doctype html> 
+<html lang="eng"> 
+  <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monica's Computer</title>
+  <link rel="stylesheet" href="index.css">
+  </head>
 
-<head>
-  <!-- Set the page title -->
-  <title></title>
+  <body> 
+    <div id="desktop">
+    <div class="icons">
+      
+      <div class="icon" data-app="browser" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="browser"><img src="images/browser.png" alt=""></div>
+        <span>Browser</span>
+      </div>
 
-  <!-- Set the charset we're using to UTF-8 -->
-  <meta charset="utf-8" />
+      <div class="icon" data-app="mail" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="mail"><img src="images/mail.png" alt=""></div>
+        <span>Mail</span>
+      </div>
 
-  <!-- Set the screens default zoom / scale to 1 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <div class="icon" data-app="notepad" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="notepad"><img src="images/notepad.png" alt=""></div>
+        <span>Notepad</span>
+      </div>
 
-  <!-- Specifies the document mode for Internet Explorer -->
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <div class="icon" data-app="Documents" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="Documents"><img src="images/file.png" alt=""></div>
+        <span>Files</span>
+      </div>
+    </div>
 
-  <!-- Set the CSS Reset File -->
-  <link rel="stylesheet" href="./reset.css" />
+    <div class="icon" data-app="Recycling Bin" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="recycling-bin"><img src="images/recycling-bin.png" alt=""></div>
+        <span>Recycling Bin</span>
+      </div>
 
-  <!-- Set the main stylesheet -->
-  <link rel="stylesheet" href="./index.css" />
-</head>
-<body>
+    <div id="windows"></div>
+
+    <div id="taskbar">
+      <button id="start-btn">Start ▾</button>
+      <div class="quick-launch" aria-hidden="true">
+      <button class="ql-btn" title="Show Desktop"><img src="images/ql-desktop.png" alt=""></button>
+      <button class="ql-btn" title="Browser"><img src="images/browser.png" alt=""></button>
+    </div>
+
+    <div id="task-list"></div>
+
+    <div id="tray">
+      <div class="tray-icons" aria-hidden="true">
+        <img src="images/tray-network.png" alt="">
+        <img src="images/tray-sound.png" alt="">
+      </div>
+      <div id="clock">3:00 PM 13/3/2005</div>
+    </div>
+  </div>
+
+  <!-- Window template used for app popups -->
+  <template id="template-window">
+    <div class="win-frame" role="dialog">
+      <div class="titlebar">
+        <div class="title"></div>
+        <div class="controls">
+          <button class="min">_</button>
+          <button class="max">▢</button>
+          <button class="close">✕</button>
+        </div>
+      </div>
+      <div class="contents"></div>
+    </div>
+  </template>
+
+  <template id="template-icon-popup">
+    <div class="icon-popup" role="menu" aria-hidden="true">
+      <button role="menuitem" data-action="open">Open</button>
+      <button role="menuitem" data-action="preview">Preview</button>
+      <button role="menuitem" data-action="properties">Properties</button>
+    </div>
+  </template>
+
+  <script src="fun.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mail</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="mail-app">
+    <aside class="sidebar">
+      <button class="compose">Compose</button>
+      <ul class="folders">
+        <li class="active" data-folder="Inbox">Inbox <span class="count">(0)</span></li>
+        <li data-folder="Drafts">Drafts <span class="count">(0)</span></li>
+        <li data-folder="Sent">Sent <span class="count">(0)</span></li>
+        <li data-folder="Deleted">Deleted <span class="count">(0)</span></li>
+      </ul>
+    </aside>
+
+    <div class="main">
+      <div class="list">
+        <ul id="message-list"></ul>
+      </div>
+
+      <div class="preview" id="preview">
+        <div class="preview-header">
+          <h2 id="preview-subject">Select a message</h2>
+          <div id="preview-meta"></div>
+        </div>
+        <div id="preview-body" class="preview-body">Select a message to see the content.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // messages now include a 'folder' field
+    const messages = [
+      {id:1, folder:'Inbox', from:"Savannah Partridge", subject:"I know its you.", date:"9:50 AM", body:"<p>I know it's you Monica, you better shut your mouth.</p>"},
+      {id:2, folder:'Inbox', from:"Theo Phillips", subject:"Theo Phillips", date:"12/3/2005", body:"<p>Monica, you are playing a dangerous game. You might think it's fun to ruin peoples lives, but someday, this will ruin yours too.</p>"},
+      {id:3, folder:'Inbox', from:"ML25049347940", subject:"David has to go.", date:"12/3/2005", body:"<p>Monica, oh Monica. Your pesky little boyfriend is standing betwen our eternal love... I need you to know, that if I can't have you, no one can.</p>"},
+      {id:4, folder:'Drafts', from:"Me", subject:"Draft: it's not you, its me...", date:"Today", body:"<p>Davie... You know I love you, but I can't be with you right now.</p>"},
+      {id:5, folder:'Drafts', from:"Me", subject:"Draft: I can't trust anyone else", date:"11:00 AM", body:"<p>Summer, I hate to put this weight on your shoulders, but I can't trust anyone else.</p>"},
+      {id:6, folder:'Sent', from:"Me", subject:"Important Information", date:"10:00 AM", body:"<p>Hi, this is Ben Jones' daughter, Monica. I found something I think you'd all really like to see... Can I meet you at your office tomorrow morning? </p>"}
+    ];
+
+    let currentFolder = 'Inbox';
+
+    function updateFolderCounts() {
+      document.querySelectorAll('.folders li').forEach(li => {
+        const folder = li.dataset.folder;
+        const count = messages.filter(m => m.folder === folder).length;
+        const span = li.querySelector('.count');
+        if (span) span.textContent = `(${count})`;
+      });
+    }
+
+    function renderList() {
+      const list = document.getElementById('message-list');
+      list.innerHTML = '';
+      const filtered = messages.filter(m => m.folder === currentFolder);
+      filtered.forEach(m => {
+        const li = document.createElement('li');
+        li.className = 'msg';
+        li.dataset.id = m.id;
+        li.innerHTML = `<div class=\"sender\">${m.from}</div><div class=\"subject\">${m.subject}</div><div class=\"date\">${m.date}</div>`;
+        li.addEventListener('click', () => showMessageById(m.id));
+        list.appendChild(li);
+      });
+      // clear preview when no messages
+      if (filtered.length === 0) {
+        document.getElementById('preview-subject').textContent = 'No messages';
+        document.getElementById('preview-meta').textContent = '';
+        document.getElementById('preview-body').textContent = 'There are no messages in this folder.';
+      }
+      updateFolderCounts();
+    }
+
+    function showMessageById(id){
+      const m = messages.find(x => x.id === Number(id));
+      if (!m) return;
+      document.getElementById('preview-subject').textContent = m.subject;
+      document.getElementById('preview-meta').textContent = m.from + ' — ' + m.date;
+      document.getElementById('preview-body').innerHTML = m.body;
+
+      document.querySelectorAll('#message-list li').forEach(el => el.classList.toggle('selected', el.dataset.id == id));
+    }
+
+    // wire folder clicks
+    document.querySelectorAll('.folders li').forEach(li => {
+      const folder = li.dataset.folder;
+      li.addEventListener('click', () => {
+        document.querySelectorAll('.folders li').forEach(x => x.classList.remove('active'));
+        li.classList.add('active');
+        currentFolder = folder;
+        renderList();
+      });
+    });
+
+    // initialize
+    updateFolderCounts();
+    renderList();
+  </script>
+</body>
+</html>

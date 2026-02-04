@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Notepad</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="notepad-app">
+    <nav class="menubar" aria-label="Notepad menu">
+      <div class="menu">File ▾</div>
+      <div class="menu">Edit ▾</div>
+      <div class="menu">Search ▾</div>
+      <div class="menu">Help</div>
+      <div class="actions">
+        <button id="new-btn" title="New">New</button>
+        <button id="save-btn" title="Save">Save</button>
+        <button id="saveas-btn" title="Save As">Save As</button>
+        <button id="delete-btn" title="Delete">Delete</button>
+      </div>
+    </nav>
+
+    <div class="workspace">
+      <aside class="note-list">
+        <div class="list-header">Notes</div>
+        <ul id="notes"></ul>
+      </aside>
+
+      <main class="editor-area">
+        <input id="note-title" placeholder="Untitled" class="title-input" />
+        <textarea id="editor" spellcheck="false" placeholder="Start typing..."></textarea>
+        <div class="status" id="status">Saved</div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Simple notes manager using localStorage
+    const STORAGE_KEY = 'notepad-notes-v1';
+    const notesEl = document.getElementById('notes');
+    const editor = document.getElementById('editor');
+    const titleInput = document.getElementById('note-title');
+    const status = document.getElementById('status');
+    let notes = [];
+    let currentId = null;
+    let autosaveTimer = null;
+
+    function load() {
+      try { notes = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e){ notes = []; }
+      if (!Array.isArray(notes)) notes = [];
+    }
+
+    function saveAll() { localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); }
+
+    function renderList() {
+      notesEl.innerHTML = '';
+      notes.forEach(n => {
+        const li = document.createElement('li');
+        li.dataset.id = n.id;
+        li.className = 'note-item';
+        li.innerHTML = `<div class="ntitle">${escapeHtml(n.title || 'Untitled')}</div><div class="nmeta">${n.modified || ''}</div>`;
+        li.addEventListener('click', () => openNote(n.id));
+        notesEl.appendChild(li);
+      });
+    }
+
+    function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function openNote(id){
+      const n = notes.find(x => x.id === id);
+      if (!n) return;
+      currentId = n.id;
+      titleInput.value = n.title || '';
+      editor.value = n.content || '';
+      markSelected();
+      setStatus('Loaded');
+    }
+
+    function markSelected(){
+      document.querySelectorAll('.note-item').forEach(el => el.classList.toggle('active', el.dataset.id == currentId));
+    }
+
+    function newNote(){
+      const id = Date.now();
+      const n = {id, title:'Untitled', content:'', modified: new Date().toLocaleString()};
+      notes.unshift(n);
+      saveAll();
+      renderList();
+      openNote(id);
+    }
+
+    function saveNote(){
+      if (!currentId) { newNote(); return; }
+      const n = notes.find(x => x.id === currentId);
+      if (!n) return;
+      n.title = titleInput.value || 'Untitled';
+      n.content = editor.value;
+      n.modified = new Date().toLocaleString();
+      saveAll();
+      renderList();
+      setStatus('Saved');
+    }
+
+    function deleteNote(){
+      if (!currentId) return;
+      notes = notes.filter(x => x.id !== currentId);
+      saveAll();
+      renderList();
+      currentId = null;
+      titleInput.value = '';
+      editor.value = '';
+      setStatus('Deleted');
+    }
+
+    function saveAs(){
+      const blob = new Blob([editor.value], {type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      const fn = (titleInput.value || 'untitled').replace(/[^a-z0-9\.\-_]/gi,'_') + '.txt';
+      a.download = fn;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setStatus('Saved As ' + fn);
+    }
+
+    function setStatus(t){ status.textContent = t; clearTimeout(autosaveTimer); autosaveTimer = setTimeout(()=> status.textContent = '', 2000); }
+
+    // UI wiring
+    document.getElementById('new-btn').addEventListener('click', newNote);
+    document.getElementById('save-btn').addEventListener('click', saveNote);
+    document.getElementById('saveas-btn').addEventListener('click', saveAs);
+    document.getElementById('delete-btn').addEventListener('click', deleteNote);
+
+    editor.addEventListener('input', () => {
+      setStatus('Editing...');
+      // auto-save after pause
+      clearTimeout(autosaveTimer);
+      autosaveTimer = setTimeout(() => { if (currentId) saveNote(); }, 1200);
+    });
+    titleInput.addEventListener('change', () => setStatus('Title changed'));
+
+    // initialize
+    load();
+    if (notes.length === 0) {
+      notes.push({id:Date.now(), title:'Welcome', content:'This is Notepad. Use New/Save to manage notes.', modified:new Date().toLocaleString()});
+      saveAll();
+    }
+    renderList();
+    // open first note
+    if (notes[0]) openNote(notes[0].id);
+  </script>
+</body>
+</html>
