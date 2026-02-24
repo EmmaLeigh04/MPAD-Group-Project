@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const appMap = {
     notepad: 'apps/notepad/index.html',
-    mail: 'apps/mail/index.html'
+    mail: 'apps/mail/index.html',
+    documents: 'apps/documents/index.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;

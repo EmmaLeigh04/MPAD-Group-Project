@@ -8,25 +8,25 @@
 </head>
 <body>
   <div class="notepad-app">
-    <nav class="menubar" aria-label="Notepad menu">
-      <div class="menu">File ▾</div>
-      <div class="menu">Edit ▾</div>
-      <div class="menu">Search ▾</div>
-      <div class="menu">Help</div>
-      <div class="actions">
-        <button id="new-btn" title="New">New</button>
-        <button id="save-btn" title="Save">Save</button>
-        <button id="saveas-btn" title="Save As">Save As</button>
-        <button id="delete-btn" title="Delete">Delete</button>
-      </div>
-    </nav>
-
     <div class="workspace">
       <aside class="note-list">
-        <div class="list-header">Notes</div>
+        <div class="list-header">
+          <button id="new-btn" title="New" class="new-note-btn">New</button>
+          <span id="documents-icon" title="Documents" class="documents-icon">📁</span>
+          Notes
+        </div>
         <ul id="notes"></ul>
+        <div id="documents-explorer" class="documents-explorer" style="display:none;">
+          <div class="explorer-header">Solution Explorer - C:\My Documents\</div>
+          <ul class="explorer-list">
+            <li><span class="folder"></span>My Music</li>
+            <li><span class="folder"></span>My Pictures</li>
+            <li><span class="folder"></span>My Videos</li>
+            <li><span class="file"></span>jwc_passes.old1</li>
+            <li><span class="file"></span>jwc_passes.old2</li>
+          </ul>
+        </div>
       </aside>
-
       <main class="editor-area">
         <input id="note-title" placeholder="Untitled" class="title-input" />
         <textarea id="editor" spellcheck="false" placeholder="Start typing..."></textarea>
@@ -36,6 +36,14 @@
   </div>
 
   <script>
+    // Documents Explorer toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var documentsIcon = document.getElementById('documents-icon');
+      var explorer = document.getElementById('documents-explorer');
+      documentsIcon.addEventListener('click', function() {
+        explorer.style.display = explorer.style.display === 'none' ? 'block' : 'none';
+      });
+    });
     // Simple notes manager using localStorage
     const STORAGE_KEY = 'notepad-notes-v1';
     const notesEl = document.getElementById('notes');
