@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@react-spring/parallax": "^10.0.3",
+    "@react-spring/web": "^10.0.3",
+    "scrollmagic": "^2.0.8"
+  }
+}
