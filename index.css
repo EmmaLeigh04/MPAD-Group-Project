@@ -52,7 +52,8 @@ body{
     margin-top:2px;
     color:#fff;
     text-shadow:0 1px 0 rgba(0,0,0,0.85)}
-
+.icon.hover{
+    background:rgba(80, 80, 80, 0.35)}
 
 .icon-img, .icon img{
   width:32px;

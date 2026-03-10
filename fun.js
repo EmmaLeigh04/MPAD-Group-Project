@@ -1,23 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
   const appMap = {
     notepad: 'apps/notepad/index.html',
-    mail: 'apps/mail/index.html'
+    mail: 'apps/mail/index.html',
+    documents: 'apps/documents/index.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
 
-  function openApp(name, title) {
-    console.log('openApp called for:', name);
+  function toggleApp(name, title) {
+    // Check if app window is already open
+    const win = windows.querySelector(`.win-frame[data-app="${name}"]`);
+    if (win) {
+      win.remove();
+      return;
+    }
     const src = appMap[name];
     if (!src) {
       alert('App not found: ' + name + '\n\nOpen apps available: ' + Object.keys(appMap).join(', '));
       console.error('No app mapping for', name, 'appMap keys=', Object.keys(appMap));
       return;
     }
-    openAppIframe(src, title || (name[0].toUpperCase() + name.slice(1)));
+    openAppIframe(src, title || (name[0].toUpperCase() + name.slice(1)), name);
   }
 
-  function openAppIframe(src, title) {
+  function openAppIframe(src, title, appName) {
     try {
       const template = document.getElementById('template-window');
       if (!template) throw new Error('template-window not found');
@@ -25,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const win = node.querySelector('.win-frame');
       if (!win) throw new Error('.win-frame not found in template');
       win.querySelector('.title').textContent = title;
+
+      // Mark window with app name for toggling
+      if (appName) win.setAttribute('data-app', appName);
 
       const contents = win.querySelector('.contents');
       const iframe = document.createElement('iframe');
@@ -79,11 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // wire icons: single-click, double-click or Enter to open
-  document.querySelectorAll('.icon').forEach(icon => {
-    icon.addEventListener('click', () => openApp(icon.dataset.app));
-    icon.addEventListener('dblclick', () => openApp(icon.dataset.app));
-    icon.addEventListener('keydown', e => { if (e.key === 'Enter') openApp(icon.dataset.app); });
-  });
+    document.querySelectorAll('.icon').forEach(icon => {
+      // Toggle app on double-click or Enter
+      icon.addEventListener('dblclick', () => toggleApp(icon.dataset.app));
+      icon.addEventListener('keydown', e => { if (e.key === 'Enter') toggleApp(icon.dataset.app); });
+    });
 
   // expose for debugging
   window.openAppIframe = openAppIframe;
