@@ -18,17 +18,18 @@ $(function () {
         var controller = new ScrollMagic.Controller();
 
         $(".p").each(function() {
+            var randomX = (Math.random() - 0.5) * 40;
             
-            var tween = gsap.from(this, {
-                duration: 1,
-                y: 50,
-                autoAlpha: 0, 
+            var tween = gsap.to(this, {
+                duration: 1.5,
+                y: -50,
+                autoAlpha: 1, 
                 ease: "power2.out"
             });
 
             new ScrollMagic.Scene({
                 triggerElement: this,     
-                triggerHook: 0.8,         
+                triggerHook: 0.9,         
                 reverse: true             
             })
             .setTween(tween)              
@@ -36,11 +37,18 @@ $(function () {
         });
 
     var computerTL = gsap.timeline();
-    computerTL.to("#screen", {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.inOut"
-    });
+    computerTL
+        .set("#screenGlow", {opacity: 1})
+
+        .to("#zapLine", {opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.inOut"})
+        .to("#zapLine", {scaleY: 100, opacity: 0, duration: 0.4, ease: "power2.out"})
+
+        .to("#screen", {opacity: 1, duration: 0.2 })
+        .to("#screen", {opacity: 0.4, duration: 0.05})
+        .to("#screen", { opacity: 1, duration: 0.1 })
+
+        .to("#screenGlow", {opacity: 0, duration: 0.5});
+
 
     new ScrollMagic.Scene({
         triggerElement: "#pinned",
