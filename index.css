@@ -1,3 +1,51 @@
+/* Error modal styles */
+.error-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+.error-window {
+    background: var(--panel, #c0c0c0);
+    border: 2px solid #000080;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+    min-width: 260px;
+    padding: 18px 24px 16px 24px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error-title {
+    font-weight: bold;
+    color: #fff;
+    background: #000080;
+    width: 100%;
+    text-align: left;
+    padding: 4px 8px;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 12px;
+}
+.error-message {
+    color: #000;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.error-close {
+    background: #eee;
+    border: 1.5px solid #888;
+    border-radius: 3px;
+    padding: 4px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+.error-close:hover {
+    background: #ddd;
+}
 
 :root{
   --bg1:#0b4a6a; 
