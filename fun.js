@@ -43,6 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
       iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
       contents.appendChild(iframe);
 
+      // Hook keydown inside iframe to trigger keyboard error in parent
+      iframe.addEventListener('load', function() {
+        try {
+          iframe.contentDocument.addEventListener('keydown', function(e) {
+            e.preventDefault();
+            var keyboardModal = document.getElementById('error-modal-2');
+            if (keyboardModal && (keyboardModal.style.display === 'none' || keyboardModal.style.display === '')) {
+              keyboardModal.style.display = 'block';
+            }
+          });
+        } catch(e) {}
+      });
+
       // initial position and stacking
       win.style.left = (120 + Math.random() * 80) + 'px';
       win.style.top = (80 + Math.random() * 40) + 'px';

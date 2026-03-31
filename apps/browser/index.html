@@ -24,10 +24,12 @@
     </span>
   </div>
   <form class="search-bar" onsubmit="return false;">
-    <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
-    <div id="suggestion-list">
-      <div id="myspace-suggestion">
-        https://www.myspace.com
+    <div class="input-wrapper">
+      <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
+      <div id="suggestion-list">
+        <div id="myspace-suggestion">
+          https://www.myspace.com
+        </div>
       </div>
     </div>
     <div>
@@ -56,6 +58,19 @@
         e.preventDefault();
         searchInput.value = myspaceUrl;
         suggestionList.style.display = 'none';
+      });
+    }
+
+    // Navigate to MySpace page when Google Search is clicked with myspace URL
+    document.querySelector('.search-bar').addEventListener('submit', function(e) {
+      e.preventDefault();
+    });
+    var searchBtn = document.querySelectorAll('.search-bar button')[0];
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim().toLowerCase().includes('myspace')) {
+          window.location.href = 'myspace.html';
+        }
       });
     }
   </script>

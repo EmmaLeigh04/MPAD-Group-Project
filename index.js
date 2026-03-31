@@ -1,21 +1,17 @@
-// Show error modals in sequence on page load
+// Show error modals on page load, close independently
 window.addEventListener('DOMContentLoaded', function() {
-	const modals = [
-		document.getElementById('error-modal-1'),
-		document.getElementById('error-modal-2')
-	];
-	let current = 0;
-	function showModal(idx) {
-		if (modals[idx]) {
-			modals[idx].style.display = 'flex';
-			// Stack each modal slightly off from the previous
-			modals[idx].style.transform = `translate(${idx * 32}px, ${idx * 32}px)`;
-			modals[idx].style.zIndex = 9999 + idx;
-			modals[idx].querySelector('.error-close').onclick = function() {
-				modals[idx].style.display = 'none';
-				if (modals[idx+1]) showModal(idx+1);
-			};
+	document.querySelectorAll('.error-close').forEach(function(btn) {
+		btn.onclick = function() {
+			btn.closest('.error-modal').style.display = 'none';
+		};
+	});
+
+	// Show keyboard error whenever the user types and block input
+	var keyboardModal = document.getElementById('error-modal-2');
+	document.addEventListener('keydown', function(e) {
+		e.preventDefault();
+		if (keyboardModal.style.display === 'none' || keyboardModal.style.display === '') {
+			keyboardModal.style.display = 'block';
 		}
-	}
-	showModal(0);
+	});
 });
