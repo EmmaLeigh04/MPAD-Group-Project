@@ -47,13 +47,30 @@ $(function () {
         .to("#screen", {opacity: 0.4, duration: 0.05})
         .to("#screen", { opacity: 1, duration: 0.1 })
 
-        .to("#screenGlow", {opacity: 0, duration: 0.5});
+        .to("#screenGlow", {opacity: 0, duration: 0.5})
+
+        // Fade in the mc.html iframe inside the screen
+        .to("#mc-iframe", {opacity: 1, pointerEvents: "auto", duration: 0.3})
+        // Expand iframe to fill viewport
+        .to("#mc-iframe", {
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            duration: 0.5,
+            ease: "power2.inOut"
+        })
+        // Fade out the computer image, scan lines, etc.
+        .to(["#computer", "#scanLines", "#screen", "#screenGlow"], {
+            opacity: 0,
+            duration: 0.3
+        }, "-=0.3");
 
 
     new ScrollMagic.Scene({
         triggerElement: "#pinned",
         triggerHook: 0,
-        duration: "100%"
+        duration: "200%"
     })
     .setPin("#pinned")
     .setTween(computerTL)
