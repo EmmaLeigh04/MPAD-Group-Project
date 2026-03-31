@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Google</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="google-logo">
+    <img src="../../images/google-logo.png" alt="Google logo" style="width:350px;max-width:90vw;">
+  </div>
+  <div class="links">
+    <b>Web</b>
+    <a href="#">Images</a>
+    <a href="#">Groups</a>
+    <a href="#">News</a>
+    <a href="#">Froogle</a>
+    <a href="#">Local</a>
+    <a href="#">more »</a>
+    <span class="right-links">
+      <a href="#">Advanced Search</a> |
+      <a href="#">Preferences</a> |
+      <a href="#">Language Tools</a>
+    </span>
+  </div>
+  <form class="search-bar" onsubmit="return false;">
+    <div class="input-wrapper">
+      <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
+      <div id="suggestion-list">
+        <div id="myspace-suggestion">
+          https://www.myspace.com
+        </div>
+      </div>
+    </div>
+    <div>
+      <button>Google Search</button>
+      <button>I'm Feeling Lucky</button>
+    </div>
+  </form>
+  <script>
+    // Show MySpace suggestion as a dropdown below the search bar
+    const searchInput = document.getElementById('search-input');
+    const suggestionList = document.getElementById('suggestion-list');
+    const myspaceSuggestion = document.getElementById('myspace-suggestion');
+    const myspaceUrl = 'https://www.myspace.com';
+    if (searchInput && suggestionList && myspaceSuggestion) {
+      function showSuggestion() {
+        suggestionList.style.display = 'block';
+      }
+      function hideSuggestion() {
+        // Delay hiding to allow click
+        setTimeout(() => { suggestionList.style.display = 'none'; }, 120);
+      }
+      searchInput.addEventListener('focus', showSuggestion);
+      searchInput.addEventListener('input', showSuggestion);
+      searchInput.addEventListener('blur', hideSuggestion);
+      myspaceSuggestion.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        searchInput.value = myspaceUrl;
+        suggestionList.style.display = 'none';
+      });
+    }
+
+    // Navigate to MySpace page when Google Search is clicked with myspace URL
+    document.querySelector('.search-bar').addEventListener('submit', function(e) {
+      e.preventDefault();
+    });
+    var searchBtn = document.querySelectorAll('.search-bar button')[0];
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim().toLowerCase().includes('myspace')) {
+          window.location.href = 'myspace.html';
+        }
+      });
+    }
+  </script>
+  <div class="footer">
+    <a href="#">Advertising Programs</a> - <a href="#">About Google</a>
+    <div class="copyright">
+      ©2005 Google - Searching 8,058,044,651 web pages
+    </div>
+  </div>
+</body>
+</html>

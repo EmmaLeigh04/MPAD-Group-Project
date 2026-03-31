@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const appMap = {
     notepad: 'apps/notepad/index.html',
     mail: 'apps/mail/index.html',
-    documents: 'apps/documents/index.html'
+    documents: 'apps/documents/index.html',
+    browser: 'apps/browser/index.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -41,6 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
       iframe.className = 'app-iframe';
       iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
       contents.appendChild(iframe);
+
+      // Hook keydown inside iframe to trigger keyboard error in parent
+      iframe.addEventListener('load', function() {
+        try {
+          iframe.contentDocument.addEventListener('keydown', function(e) {
+            e.preventDefault();
+            var keyboardModal = document.getElementById('error-modal-2');
+            if (keyboardModal && (keyboardModal.style.display === 'none' || keyboardModal.style.display === '')) {
+              keyboardModal.style.display = 'block';
+            }
+          });
+        } catch(e) {}
+      });
 
       // initial position and stacking
       win.style.left = (120 + Math.random() * 80) + 'px';

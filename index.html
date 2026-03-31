@@ -8,6 +8,20 @@
   </head>
 
   <body> 
+    <div id="error-modal-1" class="error-modal" style="top:50%; left:50%; transform:translate(-50%, -50%);">
+      <div class="error-window">
+        <div class="error-title">Error</div>
+        <div class="error-message">Update failed, please try again later.</div>
+        <button class="error-close">OK</button>
+      </div>
+    </div>
+    <div id="error-modal-2" class="error-modal" style="top:50%; left:50%; transform:translate(calc(-50% + 30px), calc(-50% + 30px)); display:none;">
+      <div class="error-window">
+        <div class="error-title">Error</div>
+        <div class="error-message">Keyboard not recognized.</div>
+        <button class="error-close">OK</button>
+      </div>
+    </div>
     <div id="desktop">
     <div class="icons">
       
@@ -81,5 +95,6 @@
   </template>
 
   <script src="fun.js" defer></script>
+  <script src="index.js" defer></script>
 </body>
 </html>
