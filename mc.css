@@ -1,0 +1,345 @@
+/* Error modal styles */
+.error-modal {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+}
+.error-window {
+    background: var(--panel, #c0c0c0);
+    border: 2px solid #000080;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    min-width: 260px;
+    padding: 18px 24px 16px 24px;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+}
+.error-title {
+    font-weight: bold;
+    color: #fff;
+    background: #000080;
+    width: 100%;
+    text-align: left;
+    padding: 4px 8px;
+    border-radius: 0;
+    margin-bottom: 12px;
+}
+.error-message {
+    color: #000;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.error-close {
+    background: #eee;
+    border: 1.5px solid #888;
+    border-radius: 0;
+    padding: 4px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+.error-close:hover {
+    background: #ddd;
+}
+
+:root{
+  --bg1:#0b4a6a;
+  --panel:#c0c0c0;
+  --light:#fff;
+  --dark:#4a4a4a;
+  --title:#000080;
+}
+*{box-sizing:border-box}
+html,body,#desktop{
+    height:100%;}
+body{
+    margin:0;
+    font-family:Tahoma, Verdana, Arial, sans-serif;
+    font-size:14px}
+#desktop{
+  position:relative;
+  min-height:100vh;
+  background-color:var(--bg1);
+
+
+  background-image: url('images/deskbackground.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  overflow:hidden;
+}
+.icons{
+    position:absolute;
+    left:12px;
+    top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:18px}
+.icon{
+    width:64px;
+    color:#fff;
+    text-align:center;
+    cursor:pointer;
+    user-select:none;
+    font-size:11px}
+.icon svg{
+    display:block;
+    margin:0 auto 6px;
+    border-radius:3px}
+.icon span{
+    display:block;
+    background:transparent;
+    padding-top:4px;
+    border-radius:2px;
+    font-size:11px;
+    margin-top:2px;
+    color:#fff;
+    text-shadow:0 1px 0 rgba(0,0,0,0.85)}
+.icon.hover{
+    background:rgba(80, 80, 80, 0.35)}
+
+.icon-img, .icon img{
+  width:32px;
+  height:32px;
+  display:block;
+  margin:0 auto 6px;
+  border-radius:3px;
+  background-color:transparent;
+  border:0;
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,0.7));
+}
+.icon img{
+    border:0;
+    background:transparent;
+    padding:0;
+    display:block}
+
+.icon:focus, .icon.selected{
+    outline:2px solid #fff; 
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.25);}
+.icon:focus span, .icon.selected span{
+    background:rgba(0,0,0,0.55)}
+
+.icon-popup{
+    position:absolute;
+    background:var(--panel);
+    border:3px solid #fff;
+    padding:6px;display:flex;
+    flex-direction:column;
+    gap:6px;
+    box-shadow:4px 4px 0 rgba(0,0,0,0.25);
+    min-width:140px;
+    z-index:1000}
+.icon-popup button{
+    padding:6px;
+    border:2px inset #c0c0c0;
+    background:#eee;
+    text-align:left;
+    font-size:13px;
+    cursor:pointer}
+.icon-popup button:hover{
+    background:#e0e0e0}
+
+
+.win-frame{
+  position:absolute;
+  left:calc(50% - 550px);
+  top:60px;
+  width: min(90vw, 1100px);
+  height: 72vh;
+  max-width: 1100px;
+  max-height: 90vh;
+  border-radius:4px;
+  background:linear-gradient(#e9e9e9,#d7d7d7 80%);
+  border-top:3px solid #fff;
+  border-left:3px solid #fff;
+  border-bottom:3px solid #777;
+  border-right:3px solid #777;
+  box-shadow:4px 4px 0 rgba(0,0,0,0.25);
+  overflow:hidden;
+  z-index:1;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* responsive for smaller screens */
+@media (max-width:900px){
+  .win-frame{left:5vw;top:40px;width:90vw;height:78vh}
+}
+
+/* maximized state helper (can be toggled later) */
+.win-frame.max{left:0;top:0;width:100%;height:calc(100% - 40px);border-radius:0}
+.titlebar{
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6px;
+  background:linear-gradient(var(--title), #0b3a6a);
+  color:var(--light);
+  font-weight:bold;
+  font-size:13px;
+  border-bottom:2px solid rgba(0,0,0,0.2);
+  cursor:grab;
+}
+.titlebar:active{cursor:grabbing}
+.title{
+    padding-left:6px}
+.controls button{
+    width:26px;
+    height:20px;
+    margin-left:4px;
+    border:2px solid #fff;
+    background:#d0d0d0;
+    color:#000;
+    font-weight:bold;}
+.controls button{
+    border-top-color:#fff;
+    border-left-color:#fff;
+    border-bottom-color:#777;
+    border-right-color:#777}
+.contents{
+    padding:12px;
+    color:#000;
+    min-height:120px}
+
+
+#taskbar{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:40px;
+    background:linear-gradient(#0d4ea0,#2b77d1);
+    border-top:3px solid rgba(255,255,255,0.12);
+    display:flex;
+    align-items:center;
+    padding:4px}
+#start-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:4px 10px;
+    border-radius:6px;
+    border:0;
+    background:linear-gradient(#6cc24a,#3aa21a);color:#fff;
+    font-weight:bold;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3)}
+#start-btn img{
+    width:16px;
+    height:16px;
+    display:block;}
+.quick-launch{
+    display:flex;
+    gap:6px;
+    margin-left:6px}
+.ql-btn{
+    width:28px;
+    height:28px;
+    padding:2px;
+    border:0;
+    background:transparent;
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer}
+.ql-btn img{
+    width:16px;
+    height:16px}
+#task-list{
+    flex:1;
+    display:flex;
+    gap:6px;
+    align-items:center;
+    padding:0 8px;
+    min-height:28px}
+.task-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 8px;
+    border-radius:2px;
+    background:linear-gradient(#e9effa,#d1e0f9);
+    border:1px solid rgba(0,0,0,0.2);
+    box-shadow:0 1px 0 rgba(255,255,255,0.6);
+    cursor:pointer;
+    min-height:28px}
+.task-btn img{
+    width:16px;
+    height:16px}
+.task-btn.active{
+    background:linear-gradient(#b2d1ff,#7fb1ff);
+    box-shadow:inset 0 1px 0 rgba(0,0,0,0.12);
+    border-bottom:2px solid #2b6fbf}
+
+#tray{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-right:8px}
+.tray-icons img{
+    width:16px;
+    height:16px;
+    opacity:0.95;
+    margin-right:6px}
+#clock{
+    background:#0b4a6a;
+    color:#fff;
+    padding:4px 8px;
+    border-radius:4px;
+    font-weight:bold;
+    font-size:12px}
+
+#clock{
+    /* slightly lighter background for the clock area */
+    background: rgba(255,255,255,0.12);
+    padding:6px 10px;
+    border-radius:4px;
+    color:#fff;
+    font-weight:bold;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 1px 0 rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+
+@media (max-width:520px){.win-frame{width:90%}}
+
+
+#start-menu{
+    position:absolute;
+    left:6px;
+    bottom:42px;
+    width:200px;
+    background:var(--panel);
+    border:3px solid #fff;
+    padding:6px}
+#start-menu button{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:6px;
+    border:2px inset #c0c0c0;
+    background:#e9e9e9;
+    margin-bottom:6px}
+
+
+/* Icons are now supplied via inline <img> elements. Add transparent PNGs to /images/:
+   - images/notepad.png
+   - images/browser.png
+   - images/file.png
+   - images/bliss.jpg (desktop wallpaper)
+*/
+
+/* App iframe styling (apps open in iframe windows) */
+.win-frame .contents{
+    height: calc(100% - 28px);} 
+.win-frame .contents .app-iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;}

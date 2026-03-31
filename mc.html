@@ -1,0 +1,100 @@
+<!doctype html> 
+<html lang="eng"> 
+  <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>index</title>
+  <link rel="stylesheet" href="mc.css">
+  </head>
+
+  <body> 
+    <div id="error-modal-1" class="error-modal" style="top:50%; left:50%; transform:translate(-50%, -50%);">
+      <div class="error-window">
+        <div class="error-title">Error</div>
+        <div class="error-message">Update failed, please try again later.</div>
+        <button class="error-close">OK</button>
+      </div>
+    </div>
+    <div id="error-modal-2" class="error-modal" style="top:50%; left:50%; transform:translate(calc(-50% + 30px), calc(-50% + 30px)); display:none;">
+      <div class="error-window">
+        <div class="error-title">Error</div>
+        <div class="error-message">Keyboard not recognized.</div>
+        <button class="error-close">OK</button>
+      </div>
+    </div>
+    <div id="desktop">
+    <div class="icons">
+      
+      <div class="icon" data-app="browser" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="browser"><img src="images/browser.png" alt=""></div>
+        <span><u>I</u>nternet Explorer</span>
+      </div>
+
+      <div class="icon" data-app="mail" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="mail"><img src="images/mail.png" alt=""></div>
+        <span><u>M</u>ail</span>
+      </div>
+
+      <div class="icon" data-app="notepad" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="notepad"><img src="images/notepad.png" alt=""></div>
+        <span><u>N</u>otepad</span>
+      </div>
+
+      <div class="icon" data-app="documents" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="Documents"><img src="images/file.png" alt=""></div>
+        <span><u>D</u>ocuments</span>
+      </div>
+
+    <div class="icon" data-app="Recycling Bin" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="icon-img" aria-hidden="true" data-name="recycling-bin"><img src="images/recycling-bin.png" alt=""></div>
+        <span><u>R</u>ecycling Bin</span>
+      </div>
+    </div>
+
+    <div id="windows"></div>
+
+    <div id="taskbar">
+      <button id="start-btn">Start ▾</button>
+      <div class="quick-launch" aria-hidden="true">
+      <button class="ql-btn" title="Show Desktop"><img src="images/ql-desktop.png" alt=""></button>
+      <button class="ql-btn" title="Browser"><img src="images/browser.png" alt=""></button>
+    </div>
+
+    <div id="task-list"></div>
+
+    <div id="tray">
+      <div class="tray-icons" aria-hidden="true">
+        <img src="images/tray-network.png" alt="">
+        <img src="images/tray-sound.png" alt="">
+      </div>
+      <div id="clock">3:00 PM 13/3/2005</div>
+    </div>
+  </div>
+
+  <!-- Window template used for app popups -->
+  <template id="template-window">
+    <div class="win-frame" role="dialog">
+      <div class="titlebar">
+        <div class="title"></div>
+        <div class="controls">
+          <button class="min">_</button>
+          <button class="max">▢</button>
+          <button class="close">✕</button>
+        </div>
+      </div>
+      <div class="contents"></div>
+    </div>
+  </template>
+
+  <template id="template-icon-popup">
+    <div class="icon-popup" role="menu" aria-hidden="true">
+      <button role="menuitem" data-action="open">Open</button>
+      <button role="menuitem" data-action="preview">Preview</button>
+      <button role="menuitem" data-action="properties">Properties</button>
+    </div>
+  </template>
+
+  <script src="fun.js" defer></script>
+  <script src="mc.js" defer></script>
+</body>
+</html>

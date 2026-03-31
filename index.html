@@ -3,98 +3,71 @@
   <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Monica's Computer</title>
-  <link rel="stylesheet" href="index.css">
+  <title>index</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+  <script src="monicasComp.js"></script>
+  <link rel="stylesheet" href="monicasComp.css"/>
   </head>
-
-  <body> 
-    <div id="error-modal-1" class="error-modal" style="top:50%; left:50%; transform:translate(-50%, -50%);">
-      <div class="error-window">
-        <div class="error-title">Error</div>
-        <div class="error-message">Update failed, please try again later.</div>
-        <button class="error-close">OK</button>
+  <body>
+    <header class="header">
+        <h1>index</h1>
+    </header>
+    <main class="main">
+      <div id="parallax1" class="container">
+        <p class="p" id="p1">In early March 2005, a local teenager goes missing and is later found dead.</p>
+        <p class="p" id="p2">Being from a small urban town where everyone knew everyone, Monica Jones’ picture was in every newspaper and every street pole.</p>
+        <p class="p" id="p3">Her death was ruled an accident. Monica, the first person in her grade to get their driver’s licence, just happened to crash into that pole. Maybe she was drunk or fell asleep, people speculated.</p>
+        <p class="p" id="p4">But no one knew for sure. The case went cold, and the town moved on.</p>
+        <p class="p" id="p5">Except for Summer</p>
       </div>
-    </div>
-    <div id="error-modal-2" class="error-modal" style="top:50%; left:50%; transform:translate(calc(-50% + 30px), calc(-50% + 30px)); display:none;">
-      <div class="error-window">
-        <div class="error-title">Error</div>
-        <div class="error-message">Keyboard not recognized.</div>
-        <button class="error-close">OK</button>
+    
+      <div id="parallax2" class="container">
+        <p class="transition">********* 21 Years Later *********</p>
+        <p class="p" id="p6">Monica’s parents finally decided to let go of their family home and move across the country after 38 years. Not much of a home without their beloved child to fill it.</p>
+        <p class="p" id="p7">Her soul haunts the place, forever stuck at 17.</p>
+        <p class="p" id="p8">They invite Monica’s once best friend, Summer, over to go through her perfectly preserved room for any keepsakes before they let go of it all and finally move on.</p>
+        <p class="transition">*</p>
+        <p class="p" id="p9">At one point in time, wherever Monica went, Summer was one step behind her. They were inseparable.</p>
+        <p class="p" id="p10">Everyone in school knew them as a pair. Monica was the popular, outgoing girl everyone loved. And Summer through association.</p>
+        <p class="p" id="p11">Summer never really let go of Monica’s death. Always felt there was something wrong with it all, something the cops were missing. Or deliberately overlooking.</p>
+        <p class="transition">*</p>
+        <p class="p" id="p12">Summer walks up the steps to 573 Pixie Boulevard one last time. Memories flood back with every step she takes.</p>
+        <p class="p" id="p13">She rings the doorbell, but the door swings open immediately.</p>
+        <p class="p" id="p14">“Summer! It’s so great to see you, sweetie,” Mrs. Jones says as she goes in for a big hug. Summer hugging back reluctantly.</p>
+        <p class="p" id="p15">She ushers Summer inside, offering tea and her famous homemade oatmeal cookies, the ones Monica loved as a child.</p>
+        <p class="p" id="p16">The house smells just as it always did. A mix of nutty, browned butter from Mrs. Jones’ baking and tobacco from Mr. Jones’ cigars. Mr. Jones was sat in his usual spot, his big green Lazboy armchair, reading some historical, non-fiction literature. A classic, he always said.</p>
+        <p class="p" id="p17">They tell Summer to take whatever she pleases and leave her to it.</p>
+        <p class="transition">*</p>
+        <p class="p" id="p18">Monica’s room is a time capsule, frozen in 2005.</p>
+        <p class="p" id="p19">Summer walks around Monica’s childhood bedroom, every nook and cranny bringing up old memories. Their childhoods, and secrets, engraved into the pink walls forever.</p>
+        <p class="p" id="p20">Blink-182 and Evanescence band posters are still pasted on every wall; her low-waisted jeans and halter tops still hang in the closet; a No Doubt CD is still loaded into her portable CD player.</p>
+        <p class="p" id="p21">Summer stops for a moment, letting the memories flood back and then, as if two decades hadn’t passed since last stepping into Monica’s room, walks over to the second last floorboard from the closet, stomping on one end to lift up the entire board.</p>
+        <p class="p" id="p22">Underneath sits Monicas once prized possession. Her Sony VAIO laptop, which she bought with her own money and covered in dirty stickers. Her whole life was on this laptop, even sides Summer never knew. </p>
+        <p class="p" id="p23">Summer knew that if there was some kind of information out there so finally solve Monica’s death, it would be in this computer.</p>
+        <p class="p" id="p24">With fingers crossed, praying the laptop still has a charge, summer reopened Monica’s life…</p>
+        <p class="transition">*</p>
       </div>
-    </div>
-    <div id="desktop">
-    <div class="icons">
-      
-      <div class="icon" data-app="browser" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="browser"><img src="images/browser.png" alt=""></div>
-        <span><u>I</u>nternet Explorer</span>
-      </div>
-
-      <div class="icon" data-app="mail" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="mail"><img src="images/mail.png" alt=""></div>
-        <span><u>M</u>ail</span>
-      </div>
-
-      <div class="icon" data-app="notepad" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="notepad"><img src="images/notepad.png" alt=""></div>
-        <span><u>N</u>otepad</span>
-      </div>
-
-      <div class="icon" data-app="documents" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="Documents"><img src="images/file.png" alt=""></div>
-        <span><u>D</u>ocuments</span>
-      </div>
-
-    <div class="icon" data-app="Recycling Bin" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="recycling-bin"><img src="images/recycling-bin.png" alt=""></div>
-        <span><u>R</u>ecycling Bin</span>
-      </div>
-    </div>
-
-    <div id="windows"></div>
-
-    <div id="taskbar">
-      <button id="start-btn">Start ▾</button>
-      <div class="quick-launch" aria-hidden="true">
-      <button class="ql-btn" title="Show Desktop"><img src="images/ql-desktop.png" alt=""></button>
-      <button class="ql-btn" title="Browser"><img src="images/browser.png" alt=""></button>
-    </div>
-
-    <div id="task-list"></div>
-
-    <div id="tray">
-      <div class="tray-icons" aria-hidden="true">
-        <img src="images/tray-network.png" alt="">
-        <img src="images/tray-sound.png" alt="">
-      </div>
-      <div id="clock">3:00 PM 13/3/2005</div>
-    </div>
-  </div>
-
-  <!-- Window template used for app popups -->
-  <template id="template-window">
-    <div class="win-frame" role="dialog">
-      <div class="titlebar">
-        <div class="title"></div>
-        <div class="controls">
-          <button class="min">_</button>
-          <button class="max">▢</button>
-          <button class="close">✕</button>
+      <div class="computer" id="pinned">
+        <div class="computerWrapper">
+          <img class="image" id="computer" src="computer.png" alt="image of a retro computer">
+          <div id="screenGlow">
+            <div id="zapLine"></div>
+          </div>
+          <img class="image" id="screen" src="screen.png" alt="old style computer screen">
+          <div id="scanLines"></div>
         </div>
       </div>
-      <div class="contents"></div>
-    </div>
-  </template>
+      
+      <div id="parallax3" class="parallaxParent">
+      </div>
 
-  <template id="template-icon-popup">
-    <div class="icon-popup" role="menu" aria-hidden="true">
-      <button role="menuitem" data-action="open">Open</button>
-      <button role="menuitem" data-action="preview">Preview</button>
-      <button role="menuitem" data-action="properties">Properties</button>
-    </div>
-  </template>
-
-  <script src="fun.js" defer></script>
-  <script src="index.js" defer></script>
-</body>
+      <div class="spacer s2"></div>
+      <div class="spacer s0" id="trigger"></div>
+      <div class="spacer s2"></div>
+    </main>
+  </body>
 </html>
