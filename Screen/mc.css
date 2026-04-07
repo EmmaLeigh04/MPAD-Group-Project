@@ -1,49 +1,101 @@
 /* Error modal styles */
+.error-x {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 22px;
+    height: 22px;
+    background: #e43c2b;
+    color: #fff;
+    border: 1.5px solid #a00;
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 0 #fff3 inset;
+    z-index: 2;
+    padding: 0;
+    line-height: 1;
+    transition: background 0.15s;
+}
+.error-x:hover {
+    background: #c6281b;
+}
+.error-window {
+    position: relative;
+}
 .error-modal {
     position: absolute;
     z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     pointer-events: none;
 }
 .error-window {
-    background: var(--panel, #c0c0c0);
+    background: #ece9d8;
     border: 2px solid #000080;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
-    min-width: 260px;
-    padding: 18px 24px 16px 24px;
-    border-radius: 0;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    min-width: 320px;
+    max-width: 380px;
+    padding: 0;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     pointer-events: auto;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 .error-title {
-    font-weight: bold;
+    font-weight: normal;
     color: #fff;
-    background: #000080;
+    background: #1976d2;
     width: 100%;
     text-align: left;
-    padding: 4px 8px;
-    border-radius: 0;
-    margin-bottom: 12px;
-}
+    padding: 4px 10px 4px 8px;
+    border-radius: 2px 2px 0 0;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: grab;
+  }
+  .error-title:active {
+    cursor: grabbing;
+  }
 .error-message {
     color: #000;
-    margin-bottom: 18px;
+    margin: 18px 0 18px 0;
     text-align: center;
+    font-size: 14px;
+    display: block;
+    align-items: unset;
+    gap: unset;
 }
 .error-close {
-    background: #eee;
+    background: #ece9d8;
     border: 1.5px solid #888;
-    border-radius: 0;
-    padding: 4px 18px;
+    border-radius: 2px;
+    padding: 2px 28px;
     font-size: 15px;
     cursor: pointer;
-    margin-top: 4px;
+    margin: 0 auto 8px auto;
+    box-shadow: 1px 1px 0 #fff inset;
+    color: #000;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 .error-close:hover {
-    background: #ddd;
-}
-
+    background: #d4d0c8;
+} 
 :root{
   --bg1:#0b4a6a;
   --panel:#c0c0c0;
@@ -59,16 +111,14 @@ body{
     font-family:Tahoma, Verdana, Arial, sans-serif;
     font-size:14px}
 #desktop{
-  position:relative;
-  min-height:100vh;
-  background-color:var(--bg1);
-
-
-  background-image: url('images/deskbackground.webp');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  overflow:hidden;
+    position:relative;
+    min-height:100vh;
+    background-color:var(--bg1);
+    background-image: url('images/db.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    overflow:hidden;
 }
 .icons{
     position:absolute;
