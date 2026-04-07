@@ -38,13 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
   var secretDoc = document.getElementById('open-secret-doc');
   if (secretDoc) {
     secretDoc.addEventListener('click', function() {
-      // Try absolute path, fallback to full URL if needed
-      var secretUrl = '/secret/secret.html';
-      // If running on localhost or a server, use location.origin
-      if (window.location.origin && window.location.origin !== 'null') {
-        secretUrl = window.location.origin + '/secret/secret.html';
+      // Try parent first (for iframe context)
+      if (window.parent && window.parent !== window && typeof window.parent.toggleApp === 'function') {
+        window.parent.toggleApp('secret', 'Shhh Secret!');
+      } else if (typeof window.toggleApp === 'function') {
+        window.toggleApp('secret', 'Shhh Secret!');
+      } else {
+        // fallback for direct open
+        var secretUrl = '/secret/secret.html';
+        if (window.location.origin && window.location.origin !== 'null') {
+          secretUrl = window.location.origin + '/secret/secret.html';
+        }
+        window.open(secretUrl, '_blank');
       }
-      window.open(secretUrl, '_blank');
     });
   }
 });

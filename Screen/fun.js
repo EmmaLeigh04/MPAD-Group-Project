@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mail: 'apps/mail/index.html',
     documents: 'apps/documents/index.html',
     browser: 'apps/browser/index.html',
-    encrypted: 'apps/documents/encrypted.html'
+    encrypted: 'apps/documents/encrypted.html',
+    secret: '../secret/secret.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const iframe = document.createElement('iframe');
       iframe.src = src;
       iframe.className = 'app-iframe';
-      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation');
       contents.appendChild(iframe);
 
       // Hook keydown inside iframe to trigger keyboard error in parent
