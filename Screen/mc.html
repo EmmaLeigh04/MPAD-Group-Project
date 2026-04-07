@@ -30,27 +30,27 @@
     <div class="icons">
       
       <div class="icon" data-app="browser" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="browser"><img src="images/browser.png" alt=""></div>
+        <div class="icon-img" aria-hidden="true" data-name="browser"><img src="../icons/windowsIcons/ie.png" alt="Internet Explorer"></div>
         <span><u>I</u>nternet Explorer</span>
       </div>
 
       <div class="icon" data-app="mail" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="mail"><img src="images/mail.png" alt=""></div>
+        <div class="icon-img" aria-hidden="true" data-name="mail"><img src="../icons/windowsIcons/mail2.png" alt="Mail"></div>
         <span><u>M</u>ail</span>
       </div>
 
       <div class="icon" data-app="notepad" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="notepad"><img src="images/notepad.png" alt=""></div>
+        <div class="icon-img" aria-hidden="true" data-name="notepad"><img src="../icons/windowsIcons/notepad2.png" alt="Notepad"></div>
         <span><u>N</u>otepad</span>
       </div>
 
       <div class="icon" data-app="documents" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="Documents"><img src="images/file.png" alt=""></div>
+        <div class="icon-img" aria-hidden="true" data-name="Documents"><img src="../icons/windowsIcons/documents.png" alt="Documents"></div>
         <span><u>D</u>ocuments</span>
       </div>
 
     <div class="icon" data-app="Recycling Bin" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-        <div class="icon-img" aria-hidden="true" data-name="recycling-bin"><img src="images/recycling-bin.png" alt=""></div>
+        <div class="icon-img" aria-hidden="true" data-name="recycling-bin"><img src="../icons/windowsIcons/recycling.png" alt="Recycling Bin"></div>
         <span><u>R</u>ecycling Bin</span>
       </div>
     </div>
@@ -58,7 +58,9 @@
     <div id="windows"></div>
 
     <div id="taskbar">
-      <button id="start-btn">Start ▾</button>
+      <button id="start-btn" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; height: 40px; width: 120px; display: flex; align-items: center; justify-content: flex-start; position: absolute; left: 0;">
+        <img src="../icons/windowsIcons/start.png" alt="Start" style="height: 38px; width: 116px; display: block;" />
+      </button>
       <div class="quick-launch" aria-hidden="true">
       <button class="ql-btn" title="Show Desktop"><img src="images/ql-desktop.png" alt=""></button>
       <button class="ql-btn" title="Browser"><img src="images/browser.png" alt=""></button>
@@ -68,8 +70,7 @@
 
     <div id="tray">
       <div class="tray-icons" aria-hidden="true">
-        <img src="images/tray-network.png" alt="">
-        <img src="images/tray-sound.png" alt="">
+        <img src="../icons/windowsIcons/virus.png" alt="Virus" style="height: 22px; width: 22px; margin-left: 8px;" />
       </div>
       <div id="clock">3:00 PM 13/3/2005</div>
     </div>
@@ -77,16 +78,15 @@
 
   <!-- Window template used for app popups -->
   <template id="template-window">
-    <div class="win-frame" role="dialog">
-      <div class="titlebar">
-        <div class="title"></div>
-        <div class="controls">
-          <button class="min">_</button>
-          <button class="max">▢</button>
-          <button class="close">✕</button>
-        </div>
+    <div class="win-frame error-window" role="dialog">
+      <div class="titlebar win-titlebar" style="border-bottom:2px solid #000080; display:flex; align-items:center; height:32px; position:relative; padding:0 8px 0 6px;">
+        <img src="../icons/windowsIcons/notepad2.png" alt="Notepad icon" class="np2-titlebar-icon notepad-icon" style="height:20px;width:20px;margin-right:8px;display:none;">
+        <img src="../icons/windowsIcons/ie.png" alt="IE icon" class="np2-titlebar-icon ie-icon" style="height:20px;width:20px;margin-right:8px;display:none;">
+        <div class="title" style="font-size:15px;font-weight:bold;flex:1;user-select:none;"></div>
+        <button class="error-x close" aria-label="Close">&#10006;</button>
       </div>
       <div class="contents"></div>
+      </div>
     </div>
   </template>
 

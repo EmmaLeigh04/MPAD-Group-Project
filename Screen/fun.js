@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     notepad: 'apps/notepad/index.html',
     mail: 'apps/mail/index.html',
     documents: 'apps/documents/index.html',
-    browser: 'apps/browser/index.html'
+    browser: 'apps/browser/index.html',
+    encrypted: 'apps/documents/encrypted.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -31,10 +32,80 @@ document.addEventListener('DOMContentLoaded', () => {
       const node = template.content.cloneNode(true);
       const win = node.querySelector('.win-frame');
       if (!win) throw new Error('.win-frame not found in template');
-      win.querySelector('.title').textContent = title;
+      // Set Notepad or IE title, color, and icon
+      const titlebar = win.querySelector('.titlebar');
+      const notepadIcon = win.querySelector('.np2-titlebar-icon.notepad-icon');
+      const ieIcon = win.querySelector('.np2-titlebar-icon.ie-icon');
+      // Add support for documents icon
+      let documentsIcon = win.querySelector('.np2-titlebar-icon.documents-icon');
+      if (!documentsIcon) {
+        documentsIcon = document.createElement('img');
+        documentsIcon.src = '../icons/windowsIcons/documents.png';
+        documentsIcon.alt = 'Documents icon';
+        documentsIcon.className = 'np2-titlebar-icon documents-icon';
+        documentsIcon.style.height = '20px';
+        documentsIcon.style.width = '20px';
+        documentsIcon.style.marginRight = '8px';
+        documentsIcon.style.display = 'none';
+        if (titlebar) titlebar.insertBefore(documentsIcon, titlebar.querySelector('.title'));
+      }
+      if (appName === 'notepad') {
+        win.querySelector('.title').textContent = 'Untitled - Notepad';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'inline-block';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+      } else if (appName === 'browser') {
+        win.querySelector('.title').textContent = 'Internet Explorer';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (ieIcon) ieIcon.style.display = 'inline-block';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+      } else if (appName === 'documents') {
+        win.querySelector('.title').textContent = 'Documents';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'inline-block';
+      } else {
+        win.querySelector('.title').textContent = title;
+        if (titlebar) {
+          titlebar.style.background = '#ece9d8';
+          win.querySelector('.title').style.color = '#222';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+      }
+      // Show Notepad icon only for Notepad
+      const icon = win.querySelector('.np2-titlebar-icon');
+      if (icon) {
+        if (appName === 'notepad') {
+          icon.style.display = 'inline-block';
+        } else {
+          icon.style.display = 'none';
+        }
+      }
+      // ...existing code...
 
       // Mark window with app name for toggling
       if (appName) win.setAttribute('data-app', appName);
+
+      // Make Documents window a little wider
+      if (appName === 'documents') {
+        win.style.width = '420px';
+        win.style.minWidth = '420px';
+        win.style.maxWidth = '440px';
+      }
 
       const contents = win.querySelector('.contents');
       const iframe = document.createElement('iframe');
@@ -72,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // basic drag behavior on titlebar
-      const titlebar = win.querySelector('.titlebar');
       if (titlebar) titlebar.addEventListener('mousedown', (e) => {
         e.preventDefault();
         let startX = e.clientX;

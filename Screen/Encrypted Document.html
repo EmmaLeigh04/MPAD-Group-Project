@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Encrypted Document</title>
+  <link rel="stylesheet" href="apps/documents/styles.css">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f6e7; color: #222; }
+    .enc-container { max-width: 480px; margin: 60px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 16px #0002; padding: 32px 28px; text-align: center; }
+    .enc-title { font-size: 1.3em; font-weight: bold; color: #1976d2; margin-bottom: 18px; }
+    .enc-input { width: 80%; padding: 8px; font-size: 1em; border-radius: 4px; border: 1px solid #bbb; margin-bottom: 16px; }
+    .enc-btn { background: #1976d2; color: #fff; border: none; border-radius: 4px; padding: 8px 22px; font-size: 1em; cursor: pointer; font-weight: 500; margin-bottom: 18px; }
+    .enc-btn:disabled { background: #b0b0b0; cursor: not-allowed; }
+    .enc-content { margin-top: 18px; font-size: 1.1em; word-break: break-word; }
+    .enc-locked { color: #b00; font-size: 1.1em; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <div class="enc-container">
+    <div class="enc-title">Encrypted Document</div>
+    <input class="enc-input" id="encKey" type="password" placeholder="Enter decryption key">
+    <button class="enc-btn" id="decBtn">Unlock</button>
+    <div class="enc-content" id="encContent" style="display:none;"></div>
+    <div class="enc-locked" id="encLocked">This document is encrypted. Enter the key to view its contents.</div>
+  </div>
+  <script>
+    // Example encrypted content (base64 of 'This is a secret document!')
+    const encrypted = 'VGhpcyBpcyBhIHNlY3JldCBkb2N1bWVudCE=';
+    const key = 'letmein'; // Example key
+    const encContent = document.getElementById('encContent');
+    const encLocked = document.getElementById('encLocked');
+    document.getElementById('decBtn').onclick = function() {
+      const userKey = document.getElementById('encKey').value;
+      if (userKey === key) {
+        encContent.textContent = atob(encrypted);
+        encContent.style.display = 'block';
+        encLocked.style.display = 'none';
+      } else {
+        encContent.style.display = 'none';
+        encLocked.textContent = 'Incorrect key. Try again.';
+        encLocked.style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html>

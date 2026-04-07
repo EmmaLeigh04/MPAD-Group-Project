@@ -1,0 +1,268 @@
+/* --- Notepad2 (XP) Visual Clone Styles --- */
+.np2-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 0;
+    min-height: 0;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #ece9d8 !important;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none !important;
+    z-index: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.np2-menu {
+    background: #ece9d8;
+    border-bottom: 1px solid #b5b5b5;
+    padding: 0 0 0 6px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    user-select: none;
+    margin: 0;
+}
+.np2-menu-item {
+    margin-right: 18px;
+    color: #222;
+    cursor: default;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+.np2-toolbar {
+    background: #f4f4f4;
+    border-bottom: 1px solid #b5b5b5;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    gap: 18px;
+    margin: 0;
+}
+.np2-toolbar-btn {
+    
+}
+.np2-toolbar-btn:active {
+    background: #d0d0d0;
+}
+.np2-toolbar-sep {
+    width: 2px;
+    height: 20px;
+    background: #b5b5b5;
+    margin: 0 4px;
+    border-radius: 1px;
+}
+.np2-editor {
+    flex: 1;
+    width: 100%;
+    min-height: 340px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 15px;
+    background: #fff;
+    color: #222;
+    padding: 8px 8px 8px 8px;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+.np2-statusbar {
+    background: #ece9d8;
+    border-top: 1px solid #b5b5b5;
+    color: #222;
+    font-size: 13px;
+    padding: 3px 12px 3px 12px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    border-radius: 0;
+    user-select: none;
+    letter-spacing: 0.2px;
+    margin: 0;
+}
+.restore-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fffbe7;
+    border: 1.5px solid #e6b800;
+    box-shadow: 0 2px 16px #0002;
+    padding: 28px 32px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    font-size: 17px;
+    gap: 18px;
+}
+.restore-popup button {
+    margin: 0 8px;
+    padding: 6px 18px;
+    border-radius: 4px;
+    border: none;
+    background: #ffd600;
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.restore-popup button:hover {
+    background: #ffe066;
+}
+.documents-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: color 0.2s;
+}
+.documents-icon:hover {
+    color: #1976d2;
+}
+.documents-btn {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background 0.2s;
+}
+.documents-btn:hover {
+    background: #1565c0;
+}
+.documents-explorer {
+    background: #f9f9f9;
+    border: 1px solid #bdbdbd;
+    margin: 12px 0 0 0;
+    padding: 8px;
+    width: 220px;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 2px 2px 6px #ccc;
+}
+.explorer-header {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    background: #e3e3e3;
+    padding: 4px 8px;
+    border-bottom: 1px solid #bdbdbd;
+}
+.explorer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.explorer-list li {
+    font-size: 13px;
+    color: #222;
+    padding: 2px 0 2px 24px;
+    position: relative;
+    cursor: pointer;
+}
+.explorer-list li:hover {
+    background: #e0e0e0;
+}
+.explorer-list .folder:before {
+    content: '\1F4C1'; /* folder emoji */
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+}
+.explorer-list .file:before {
+    content: '\1F4C4'; /* file emoji */
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+}
+html, body {
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ece9d8 !important;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif !important;
+    overflow: hidden !important;
+}
+#note{
+    width:100%;
+    height:100%;
+    border:1px solid #ccc;
+    padding:8px;
+    font-size:14px;
+    box-sizing:border-box;
+    resize:none;
+    outline:none}
+#note::placeholder{
+    color:#999}
+/* Notepad sidebar styles */
+.note-list {
+    width: 220px;
+    background: #f7f7f7;
+    border-right: 1px solid #ddd;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 12px 8px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f0f0f0;
+}
+.new-note-btn {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background 0.2s;
+}
+.new-note-btn:hover {
+    background: #388e3c;
+}
+#notes {
+    list-style: none;
+    margin: 0;
+    padding: 0 12px;
+    flex: 1;
+    overflow-y: auto;
+}
+.note-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+.note-item.active {
+    background: #e0f7fa;
+}
+.ntitle {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+}
+.nmeta {
+    font-size: 12px;
+    color: #888;
+}

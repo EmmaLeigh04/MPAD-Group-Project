@@ -4,22 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Documents</title>
-  <link rel="stylesheet" href="../notepad/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="documents-app">
-    <h2>Documents</h2>
+    <div class="explorer-toolbar">
+      <img src="../../../icons/windowsIcons/folder.png" alt="New Folder" class="explorer-toolbar-icon">
+      <img src="../../../icons/windowsIcons/up.png" alt="Up" class="explorer-toolbar-icon">
+      <img src="../../../icons/windowsIcons/view-info.ico" alt="Properties" class="explorer-toolbar-icon">
+      <img src="../../../icons/windowsIcons/refresh.png" alt="Refresh" class="explorer-toolbar-icon">
+    </div>
     <div class="documents-explorer">
-      <div class="explorer-header">Solution Explorer - C:\My Documents\</div>
+      <div class="explorer-header">C:\...\My Documents\</div>
       <ul class="explorer-list">
+        <li id="open-summer-folder"><span class="folder"></span>Me + Summer </li>
+        <li id="open-bf-folder"><span class="folder"></span>Me + BF</li>
         <li><span class="folder"></span>My Music</li>
         <li><span class="folder"></span>My Pictures</li>
-        <li><span class="folder"></span>My Received Files</li>
         <li><span class="folder"></span>My Videos</li>
-        <li><span class="file"></span>jwc_passes.old1</li>
-        <li><span class="file"></span>jwc_passes.old2</li>
+        <li><span class="file"></span>Watcha Doin?</li>
+        <li id="open-secret-doc"><span class="file"></span>Shhh Secret!.txt</li>
+      
       </ul>
     </div>
+    <div class="explorer-tabs">
+      <span class="tab active">Solution Explorer</span>
+      <span class="tab">Server Explorer</span>
+    </div>
   </div>
+<script>
+// Open Shhh Secret! app in a new tab when clicked
+document.addEventListener('DOMContentLoaded', function() {
+  var secretDoc = document.getElementById('open-secret-doc');
+  if (secretDoc) {
+    secretDoc.addEventListener('click', function() {
+      // Try absolute path, fallback to full URL if needed
+      var secretUrl = '/secret/secret.html';
+      // If running on localhost or a server, use location.origin
+      if (window.location.origin && window.location.origin !== 'null') {
+        secretUrl = window.location.origin + '/secret/secret.html';
+      }
+      window.open(secretUrl, '_blank');
+    });
+  }
+});
+</script>
+<script>
+// Open encrypted document in a new tab when clicked
+document.addEventListener('DOMContentLoaded', function() {
+  var encryptedDoc = document.getElementById('open-encrypted-doc');
+  if (encryptedDoc) {
+    encryptedDoc.addEventListener('click', function() {
+      window.open('encrypted.html', '_blank');
+    });
+  }
+});
+</script>
 </body>
 </html>
