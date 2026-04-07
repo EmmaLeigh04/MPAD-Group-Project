@@ -1,30 +1,41 @@
-body {
-    margin: 0;
-    background-color: beige;
-    min-height: 100vh;
-    gap: 50px;
- }
-
-.header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-
-}
-
-h1 {
-    font-size: 150px;
-    text-align: left;
-    grid-column-start: 1;
-    grid-column-end: 1;
-    margin-left: 50px;
-    font-family: 'CS Vontech Demo';
-}
-
 .p {
     display: block;
     font-size: 2rem;
     opacity: 0;
     margin: 5%;
+    position: relative;
+    padding: 25px;
+    background-color: rgba(248, 227, 227, 0.4);
+    border: solid rgb(120, 15, 15);
+    transition: transform 0.3s, opacity 0.3s;
+    will-change: opacity, transform;
+}
+.computer {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.computerWrapper {
+    position: relative;
+    width: 90vw;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 0;
+    overflow: visible;
+    aspect-ratio: 4/3;
+    height: auto;
+}
+#computer {
+    width: 100%;
+    height: auto;
+    max-width: 100vw;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+    aspect-ratio: 4/3;
+    transition: width 0.3s, height 0.3s;
+}
+#screen {
     position: relative;
     padding: 25px;
     background-color: rgba(248, 227, 227, 0.4);
@@ -137,7 +148,7 @@ h1 {
 #screenGlow {
     position: absolute;
     top: 15.3%;
-    left: 26%;
+    left: 26.1%;
     width: 37.2%;
     height: 42.2%;
     background-color: rgb(27, 41, 41);

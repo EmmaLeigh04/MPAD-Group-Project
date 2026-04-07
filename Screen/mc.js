@@ -1,5 +1,17 @@
 // Show error modals on page load, close independently
 window.addEventListener('DOMContentLoaded', function() {
+				// Play error sound if update error is visible on load
+				var updateModal = document.getElementById('error-modal-1');
+				if (updateModal && updateModal.style.display !== 'none') {
+					setTimeout(function() { playErrorSound(); }, 100);
+				}
+			function playErrorSound() {
+				var audio = document.getElementById('error-audio');
+				if (audio) {
+					audio.currentTime = 0;
+					audio.play();
+				}
+			}
 		// Make error modals draggable
 		function makeModalDraggable(modal) {
 			const windowDiv = modal.querySelector('.error-window');
@@ -36,25 +48,31 @@ window.addEventListener('DOMContentLoaded', function() {
 			});
 		}
 
+		// Show error sound when any error modal is shown
+		function showErrorModal(modal) {
+			modal.style.display = 'block';
+			playErrorSound();
+		}
+
 		document.querySelectorAll('.error-modal').forEach(makeModalDraggable);
-	document.querySelectorAll('.error-close').forEach(function(btn) {
-		btn.onclick = function() {
-			btn.closest('.error-modal').style.display = 'none';
-		};
-	});
+		document.querySelectorAll('.error-close').forEach(function(btn) {
+			btn.onclick = function() {
+				btn.closest('.error-modal').style.display = 'none';
+			};
+		});
 
 	// Show keyboard error whenever the user types and block input
 	var keyboardModal = document.getElementById('error-modal-3');
 	document.addEventListener('keydown', function(e) {
 		e.preventDefault();
-		keyboardModal.style.display = 'block';
+		showErrorModal(keyboardModal);
 	});
 	document.addEventListener('keypress', function(e) {
 		e.preventDefault();
-		keyboardModal.style.display = 'block';
+		showErrorModal(keyboardModal);
 	});
 	document.addEventListener('keyup', function(e) {
 		e.preventDefault();
-		keyboardModal.style.display = 'block';
+		showErrorModal(keyboardModal);
 	});
 });

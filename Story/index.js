@@ -1,5 +1,31 @@
 $(function () {
+
+    // Fade out background music as user approaches the computer
+    var musicFadeScene = new ScrollMagic.Scene({
+        triggerElement: "#pinned",
+        triggerHook: 0.8, // Start fade before computer is reached
+        duration: window.innerHeight * 0.5 // Fade over half a screen height
+    })
+    .addTo(new ScrollMagic.Controller())
+    .on("progress", function (e) {
+        var audio = document.getElementById('bg-music');
+        if (audio) {
+            audio.volume = Math.max(0, 1 - e.progress);
+        }
+    });
+
     var controller = new ScrollMagic.Controller();
+
+    // Redirect to welcome.html (correct path) when the computer animation finishes (user scrolls past the computer section)
+    new ScrollMagic.Scene({
+        triggerElement: "#pinned",
+        triggerHook: 0,
+        duration: "200%"
+    })
+    .on("end", function () {
+        window.location.href = "../welcome.html";
+    })
+    .addTo(controller);
         // build scenes
     new ScrollMagic.Scene({triggerElement: "#parallax1", duration: "100%", triggerHook: 0.5})
         .setTween(gsap.to("body", 1, {backgroundColor: "pink", duration: 1, ease: "none"}))

@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.toggleApp('secret', 'Shhh Secret!');
       } else {
         // fallback for direct open
-        var secretUrl = '/secret/secret.html';
+        var secretUrl = 'apps/secret/secret.html';
         if (window.location.origin && window.location.origin !== 'null') {
-          secretUrl = window.location.origin + '/secret/secret.html';
+          secretUrl = window.location.origin + '/apps/secret/secret.html';
         }
         window.open(secretUrl, '_blank');
       }

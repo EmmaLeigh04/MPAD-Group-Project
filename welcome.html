@@ -7,8 +7,26 @@
   <link rel="stylesheet" href="welcome.css">
 </head>
 <body>
+  <audio id="startup-audio" src="sounds/windowstartsound.mp3"></audio>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('startup-audio');
+      // Only play audio if this is the top-level page (not in an iframe)
+      if (window.top === window.self && audio) {
+        setTimeout(function() {
+          var playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function() {
+              // If autoplay is blocked, play on first user interaction
+              var playOnUser = function() {
+                audio.play();
+                document.body.removeEventListener('click', playOnUser);
+              };
+              document.body.addEventListener('click', playOnUser);
+            });
+          }
+        }, 600);
+      }
       document.body.addEventListener('click', function() {
         window.location.href = 'Screen/mc.html';
       });

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     documents: 'apps/documents/index.html',
     browser: 'apps/browser/index.html',
     encrypted: 'apps/documents/encrypted.html',
-    secret: '../secret/secret.html'
+    secret: 'apps/secret/secret.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     openAppIframe(src, title || (name[0].toUpperCase() + name.slice(1)), name);
   }
 
+  // Expose toggleApp globally so iframes (like Documents) can call it
+  window.toggleApp = toggleApp;
+
   function openAppIframe(src, title, appName) {
     try {
       const template = document.getElementById('template-window');
@@ -33,11 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const node = template.content.cloneNode(true);
       const win = node.querySelector('.win-frame');
       if (!win) throw new Error('.win-frame not found in template');
-      // Set Notepad or IE title, color, and icon
+      // Set Notepad, IE, Documents, Mail, or Note icon and titlebar color
       const titlebar = win.querySelector('.titlebar');
       const notepadIcon = win.querySelector('.np2-titlebar-icon.notepad-icon');
       const ieIcon = win.querySelector('.np2-titlebar-icon.ie-icon');
-      // Add support for documents icon
+      // Documents icon
       let documentsIcon = win.querySelector('.np2-titlebar-icon.documents-icon');
       if (!documentsIcon) {
         documentsIcon = document.createElement('img');
@@ -50,15 +53,54 @@ document.addEventListener('DOMContentLoaded', () => {
         documentsIcon.style.display = 'none';
         if (titlebar) titlebar.insertBefore(documentsIcon, titlebar.querySelector('.title'));
       }
+      // Note icon (for secret app)
+      let noteIcon = win.querySelector('.np2-titlebar-icon.note-icon');
+      if (!noteIcon) {
+        noteIcon = document.createElement('img');
+        noteIcon.src = '../icons/windowsIcons/newnote.png';
+        noteIcon.alt = 'Note icon';
+        noteIcon.className = 'np2-titlebar-icon note-icon';
+        noteIcon.style.height = '20px';
+        noteIcon.style.width = '20px';
+        noteIcon.style.marginRight = '8px';
+        noteIcon.style.display = 'none';
+        if (titlebar) titlebar.insertBefore(noteIcon, titlebar.querySelector('.title'));
+      }
+      // Mail icon
+      let mailIcon = win.querySelector('.np2-titlebar-icon.mail-icon');
+      if (!mailIcon) {
+        mailIcon = document.createElement('img');
+        mailIcon.src = '../icons/windowsIcons/mail.png';
+        mailIcon.alt = 'Mail icon';
+        mailIcon.className = 'np2-titlebar-icon mail-icon';
+        mailIcon.style.height = '20px';
+        mailIcon.style.width = '20px';
+        mailIcon.style.marginRight = '8px';
+        mailIcon.style.display = 'none';
+        if (titlebar) titlebar.insertBefore(mailIcon, titlebar.querySelector('.title'));
+      }
       if (appName === 'notepad') {
-        win.querySelector('.title').textContent = 'Untitled - Notepad';
+        win.querySelector('.title').textContent = 'Untitled - Notepad2';
         if (titlebar) {
           titlebar.style.background = '#1976d2';
           win.querySelector('.title').style.color = '#fff';
         }
         if (notepadIcon) notepadIcon.style.display = 'inline-block';
+        if (noteIcon) noteIcon.style.display = 'none';
         if (ieIcon) ieIcon.style.display = 'none';
         if (documentsIcon) documentsIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'none';
+      } else if (appName === 'secret') {
+        win.querySelector('.title').textContent = 'Untitled - Notepad2';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (noteIcon) noteIcon.style.display = 'inline-block';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'none';
       } else if (appName === 'browser') {
         win.querySelector('.title').textContent = 'Internet Explorer';
         if (titlebar) {
@@ -68,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (notepadIcon) notepadIcon.style.display = 'none';
         if (ieIcon) ieIcon.style.display = 'inline-block';
         if (documentsIcon) documentsIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'none';
       } else if (appName === 'documents') {
         win.querySelector('.title').textContent = 'Documents';
         if (titlebar) {
@@ -77,6 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (notepadIcon) notepadIcon.style.display = 'none';
         if (ieIcon) ieIcon.style.display = 'none';
         if (documentsIcon) documentsIcon.style.display = 'inline-block';
+        if (mailIcon) mailIcon.style.display = 'none';
+      } else if (appName === 'mail') {
+        win.querySelector('.title').textContent = 'Mail';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+        if (noteIcon) noteIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'inline-block';
       } else {
         win.querySelector('.title').textContent = title;
         if (titlebar) {
@@ -86,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (notepadIcon) notepadIcon.style.display = 'none';
         if (ieIcon) ieIcon.style.display = 'none';
         if (documentsIcon) documentsIcon.style.display = 'none';
+        if (noteIcon) noteIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'none';
       }
       // Show Notepad icon only for Notepad
       const icon = win.querySelector('.np2-titlebar-icon');
@@ -121,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
           iframe.contentDocument.addEventListener('keydown', function(e) {
             e.preventDefault();
             var keyboardModal = document.getElementById('error-modal-2');
-            if (keyboardModal && (keyboardModal.style.display === 'none' || keyboardModal.style.display === '')) {
+            if (keyboardModal) {
               keyboardModal.style.display = 'block';
             }
           });
