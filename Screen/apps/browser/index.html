@@ -31,37 +31,45 @@
       <img src="../../../icons/windowsIcons/searchgo.png" alt="Go" class="browser-address-icon">
     </div>
   </div>
-  <div class="google-logo">
-    <img src="../../../images/google-logo.png" alt="Google logo" style="width:350px;max-width:90vw;">
-  </div>
-  <div class="links">
-    <b>Web</b>
-    <a href="#">Images</a>
-    <a href="#">Groups</a>
-    <a href="#">News</a>
-    <a href="#">Froogle</a>
-    <a href="#">Local</a>
-    <a href="#">more »</a>
-    <span class="right-links">
-      <a href="#">Advanced Search</a> |
-      <a href="#">Preferences</a> |
-      <a href="#">Language Tools</a>
-    </span>
-  </div>
-  <form class="search-bar" onsubmit="return false;">
-    <div class="input-wrapper">
-      <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
-      <div id="suggestion-list">
-        <div id="myspace-suggestion">
-          https://www.myspace.com
+  <div class="main-content">
+    <div class="google-logo">
+      <img src="../../../images/google-logo.png" alt="Google logo" style="width:350px;max-width:90vw;">
+    </div>
+    <div class="links">
+      <b>Web</b>
+      <a href="#">Images</a>
+      <a href="#">Groups</a>
+      <a href="#">News</a>
+      <a href="#">Froogle</a>
+      <a href="#">Local</a>
+      <a href="#">more »</a>
+      <span class="right-links">
+        <a href="#">Advanced Search</a> |
+        <a href="#">Preferences</a> |
+        <a href="#">Language Tools</a>
+      </span>
+    </div>
+    <form class="search-bar" onsubmit="return false;">
+      <div class="input-wrapper">
+        <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
+        <div id="suggestion-list">
+          <div id="myspace-suggestion">
+            https://www.myspace.com
+          </div>
         </div>
       </div>
+      <div>
+        <button>Google Search</button>
+        <button>I'm Feeling Lucky</button>
+      </div>
+    </form>
+    <div class="footer">
+      <a href="#">Advertising Programs</a> - <a href="#">About Google</a>
+      <div class="copyright">
+        ©2005 Google - Searching 8,058,044,651 web pages
+      </div>
     </div>
-    <div>
-      <button>Google Search</button>
-      <button>I'm Feeling Lucky</button>
-    </div>
-  </form>
+  </div>
   <script>
     // Show MySpace suggestion as a dropdown below the search bar
     const searchInput = document.getElementById('search-input');
@@ -99,11 +107,6 @@
       });
     }
   </script>
-  <div class="footer">
-    <a href="#">Advertising Programs</a> - <a href="#">About Google</a>
-    <div class="copyright">
-      ©2005 Google - Searching 8,058,044,651 web pages
-    </div>
-  </div>
+  <!-- Footer moved inside .main-content above -->
 </body>
 </html>

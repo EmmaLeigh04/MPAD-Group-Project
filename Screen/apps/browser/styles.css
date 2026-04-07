@@ -76,11 +76,23 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: block;
   text-align: center;
 }
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
 .google-logo {
-  margin-top: 60px;
-  margin-bottom: 18px;
+  margin: 40px auto 18px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .google-logo img {
   width: 330px;
@@ -88,19 +100,22 @@ body {
 }
 .search-bar {
   margin: 0 auto 12px auto;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .input-wrapper {
   position: relative;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   margin-top: 18px;
   margin-bottom: 18px;
 }
 .search-bar input[type="text"] {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 28px;
   font-size: 18px;
   padding: 2px 8px;
@@ -147,23 +162,36 @@ body {
 }
 .links {
   margin: 0 auto 8px auto;
-  width: 420px;
-  text-align: left;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   font-size: 15px;
+  text-align: center;
 }
 .links a {
   color: #00c;
   text-decoration: underline;
-  margin-right: 12px;
+  margin-right: 8px;
+  margin-left: 8px;
 }
 .right-links {
-  float: right;
   font-size: 12px;
-  margin-top: 2px;
+  margin-left: 16px;
+  margin-top: 0;
+  display: inline;
 }
 .footer {
   margin-top: 40px;
   font-size: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .footer a {
   color: #00c;
@@ -174,4 +202,5 @@ body {
   margin-top: 12px;
   font-size: 13px;
   color: #222;
+  text-align: center;
 }
