@@ -24,7 +24,7 @@
         <li><span class="folder"></span>My Videos</li>
         <li><span class="file"></span>Watcha Doin?</li>
         <li id="open-secret-doc"><span class="file"></span>Shhh Secret!.txt</li>
-      
+        <li id="open-evidence-doc"><span class="file"></span>Evidence.txt</li>
       </ul>
     </div>
     <div class="explorer-tabs">
@@ -50,6 +50,24 @@ document.addEventListener('DOMContentLoaded', function() {
           secretUrl = window.location.origin + '/apps/secret/secret.html';
         }
         window.open(secretUrl, '_blank');
+      }
+    });
+  }
+  var evidenceDoc = document.getElementById('open-evidence-doc');
+  if (evidenceDoc) {
+    evidenceDoc.addEventListener('click', function() {
+      // Try parent first (for iframe context)
+      if (window.parent && window.parent !== window && typeof window.parent.toggleApp === 'function') {
+        window.parent.toggleApp('evidence', 'Evidence');
+      } else if (typeof window.toggleApp === 'function') {
+        window.toggleApp('evidence', 'Evidence');
+      } else {
+        // fallback for direct open
+        var evidenceUrl = 'apps/secret/evidence.html';
+        if (window.location.origin && window.location.origin !== 'null') {
+          evidenceUrl = window.location.origin + '/apps/secret/evidence.html';
+        }
+        window.open(evidenceUrl, '_blank');
       }
     });
   }

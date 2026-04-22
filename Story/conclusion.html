@@ -1,0 +1,81 @@
+<!doctype html> 
+<html lang="eng"> 
+  <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monica's Story - Conclusion</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+  <script src="index-conclusion.js"></script>
+  <link rel="stylesheet" href="index.css"/>
+  </head>
+  <body>
+      <audio id="bg-music" src="../sounds/mysterymusic.mp3" autoplay loop></audio>
+      <div id="audio-unlock" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;">
+        click to begin
+      </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('bg-music');
+        var unlock = document.getElementById('audio-unlock');
+        function tryPlay() {
+          if (!audio) return;
+          var playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function() {
+              unlock.style.display = 'flex';
+            });
+          }
+        }
+        tryPlay();
+        unlock.addEventListener('click', function() {
+          audio.play();
+          unlock.style.display = 'none';
+        });
+      });
+    </script>
+    <main class="main">
+      <div id="parallax1" class="container">
+        <h1 class="p" style="text-align:center;margin-top:2em;">Summer shuts off the computer, feeling the gravity of what she has discovered.</h1>
+        <p class="p" style="text-align:center;">she turns around, the sun has began to set and she knows she has to somehow get this computer to the police.</p>
+      </div>
+      <div id="parallax2" class="container">
+        <p class="p" id="p25">She stands, thinking her best bet is to go purchase a USB drive and return.</p>
+        <p class="p" id="p26">As she grabs her bag and makes for the door, Frank appears in the doorway, blocking her path. </p>
+      </div>
+      <div id="parallax3" class="container">
+        <p class="p" id="p27">"Find anything good?" he asks, friendly and non-suspecting.</p>
+        <p class="p" id="p28">She laughs nervously, trying to hide her fear. "Nope, haha! Just clothes and stuff..."</p>
+      </div>
+      <div id="parallax4" class="container">
+        <p class="p" id="p29">"You didn't happen to find some way to get into her computer, did you?" He asks, glancing at the desktop and the clearly disturbed desk area.</p>
+        <p class="p" id="p30">Summer lies and tells him she didn't, trying to keep her voice steady. "I tried, but uh.. no luck!"</p>
+      </div>
+      <div id="parallax5" class="container">
+        <p class="p" id="p31">His brows furrow. He doesn't seem convinced. "I mean, if Monica told anyone, it would have been you.."</p>
+        <p class="p" id="p32">She looks back at the desktop. "Well.. I guess she forgot to!" she blurts out. "Anyways... I better be off. I've got work early tomorrow morning."</p>
+      </div>
+      <div id="parallax6" class="container">
+        <p class="p" id="p33">She pushes past him gently into the hallway, speeding up slightly trying to get to the front door.</p>
+        <p class="p" id="p34">"Summer, wait a minute!" Frank says, following her down the stairs. "I'd really like to catch up." He doesn't sound genuine. </p>
+      </div>
+      <div id="parallax7" class="container">
+        <p class="p" id="p35">"I's sorry Mr. Jones, but I do have to go." She repeats, hand on the door knob. As she turns the knob and goes to open the door, Frank puts a hand out and reshuts it.</p>
+        <p class="p" id="p36">"Summer, please. Just a few minutes." Frank insists, his tone more serious, and almost threatening now.</p>
+      </div>
+      <div id="parallax8" class="container">
+        <p class="p" id="p37">Summer takes a deep breath, "The password is upstairs, under the keyboard" She lies. </p>
+        <p class="p" id="p38">Frank makes a break for it up the stairs, skipping steps as he goes. Summer quickly runs out the door and gets into her car, reversing as quickly as she can.</p>
+      </div>
+      <div id="parallax9" class="container">
+        <p class="p" id="p39">"Siri, call 911."</p>
+      </div>
+      <div class="spacer s2"></div>
+    </main>
+  </body>
+</html>
+</body>
+</html>

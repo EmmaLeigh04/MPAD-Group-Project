@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     documents: 'apps/documents/index.html',
     browser: 'apps/browser/index.html',
     encrypted: 'apps/documents/encrypted.html',
-    secret: 'apps/secret/secret.html'
+    secret: 'apps/secret/secret.html',
+    evidence: 'apps/secret/evidence.html'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -132,6 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (documentsIcon) documentsIcon.style.display = 'none';
         if (noteIcon) noteIcon.style.display = 'none';
         if (mailIcon) mailIcon.style.display = 'inline-block';
+      } else if (appName === 'evidence') {
+        win.querySelector('.title').textContent = 'Evidence';
+        if (titlebar) {
+          titlebar.style.background = '#1976d2';
+          win.querySelector('.title').style.color = '#fff';
+        }
+        if (notepadIcon) notepadIcon.style.display = 'none';
+        if (noteIcon) noteIcon.style.display = 'inline-block';
+        if (ieIcon) ieIcon.style.display = 'none';
+        if (documentsIcon) documentsIcon.style.display = 'none';
+        if (mailIcon) mailIcon.style.display = 'none';
       } else {
         win.querySelector('.title').textContent = title;
         if (titlebar) {
@@ -238,4 +250,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // expose for debugging
   window.openAppIframe = openAppIframe;
+
+  // Track opened apps for Clippy
+  const allApps = Object.keys(appMap);
+  let openedApps = JSON.parse(sessionStorage.getItem('openedApps') || '[]');
+  let clippyShown = sessionStorage.getItem('clippyShown') === 'true';
+
+  function checkClippy() {
+    if (!clippyShown && allApps.every(app => openedApps.includes(app))) {
+      clippyShown = true;
+      sessionStorage.setItem('clippyShown', 'true');
+      showClippy();
+    }
+  }
+
+  function showClippy() {
+    if (document.getElementById('clippy-container')) return;
+    const clippy = document.createElement('div');
+    clippy.id = 'clippy-container';
+    clippy.style.position = 'fixed';
+    clippy.style.left = '50%';
+    clippy.style.top = '50%';
+    clippy.style.transform = 'translate(-50%, 0)';
+    clippy.style.zIndex = '9999';
+    clippy.innerHTML = `
+      <div id="clippy-bubble" style="position:absolute; bottom:120px; left:0; background:#f9e79f; border:2px solid #222; border-radius:6px; padding:10px 18px 10px 18px; min-width:260px; font-size:15px; color:#222; box-shadow:2px 4px 12px rgba(0,0,0,0.08); font-family: 'MS Sans Serif', Arial, sans-serif;">
+        <div style='margin-bottom:10px;'>It looks like you've seen everything!<br>Would you like to find out the truth?</div>
+        <div style='display:flex; justify-content:flex-end; gap:10px;'>
+          <button id="clippy-leave" style="padding:2px 18px; border-radius:2px; border:1px solid #222; background:#fff; color:#222; font-weight:bold; font-family:inherit; cursor:pointer;">Yes</button>
+          <button id="clippy-stay" style="padding:2px 18px; border-radius:2px; border:1px solid #222; background:#fff; color:#222; font-weight:bold; font-family:inherit; cursor:pointer;">No</button>
+        </div>
+        <!-- Speech bubble tail: border color matches bubble, border width matches border, tail is layered for border and fill -->
+        <div style="position:absolute; left:70px; bottom:-22px; width:0; height:0; z-index:2; border-left:18px solid transparent; border-right:18px solid transparent; border-top:22px solid #222;"></div>
+        <div style="position:absolute; left:72px; bottom:-20px; width:0; height:0; z-index:3; border-left:16px solid transparent; border-right:16px solid transparent; border-top:20px solid #f9e79f;"></div>
+      </div>
+      <img src="../images/Clippy.webp" alt="Clippy" style="width:90px; position:absolute; left:70px; bottom:0; z-index:2;">
+    `;
+    document.body.appendChild(clippy);
+    document.getElementById('clippy-leave').onclick = () => { window.location.href = '../Story/conclusion.html'; };
+    document.getElementById('clippy-stay').onclick = () => { clippy.querySelector('div').innerHTML = "Keep exploring!"; };
+  }
+
+  // DEBUG: Show Clippy immediately for testing
+  // showClippy(); // Remove or comment out this line to disable immediate Clippy
+
+  // Patch toggleApp to track opened apps
+  const origToggleApp = toggleApp;
+  window.toggleApp = function(name, title) {
+    if (!openedApps.includes(name)) {
+      openedApps.push(name);
+      sessionStorage.setItem('openedApps', JSON.stringify(openedApps));
+      checkClippy();
+    }
+    origToggleApp(name, title);
+  };
+
+  // On load, check if Clippy should be shown
+  checkClippy();
 });
