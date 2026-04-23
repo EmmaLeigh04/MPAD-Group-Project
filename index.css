@@ -97,9 +97,12 @@ h1 {
 
 #computer {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
     opacity: 1;
-    z-index: 1
+    z-index: 10;
+    overflow: hidden;
+
 }
 
 #screen {
@@ -123,6 +126,8 @@ h1 {
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden;
+
 }
 
 #interfaceLayer {
@@ -140,11 +145,20 @@ h1 {
 #desktop {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .computerWrapper {
+    position: relative;
+    width: 80vmin;
+    height: 60vmin;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
     will-change: transform;
-    transform-origin: 44.7%
+    transform-origin: 44.7%;
+    overflow: hidden;
 }
 
 #interfaceLayer.active {
@@ -166,6 +180,7 @@ h1 {
     color: rgb(240, 242, 255);
     pointer-events: auto !important;
     z-index: 20;
+    overflow: hidden;
 }
 
 #loginBtn {
