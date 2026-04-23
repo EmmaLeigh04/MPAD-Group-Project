@@ -85,7 +85,7 @@ html, body {
 .folder::before {
   content: '';
   display: inline-block;
-  background: url('../../../icons/windowsIcons/folder.png') no-repeat center center / 18px 18px;
+  background: url('/Users/madelinefaulds/Desktop/school/2025-2026/MPAD2/MPAD-Group-Project-1/icons/windowsIcons/folder.png') no-repeat center center / 18px 18px;
   width: 18px;
   height: 18px;
   margin-right: 10px;
@@ -94,7 +94,7 @@ html, body {
 .file::before {
   content: '';
   display: inline-block;
-  background: url('../../../icons/windowsIcons/file.png') no-repeat center center / 16px 16px;
+  background: url('/Users/madelinefaulds/Desktop/school/2025-2026/MPAD2/MPAD-Group-Project-1/icons/windowsIcons/file.png') no-repeat center center / 16px 16px;
   width: 16px;
   height: 16px;
   margin-right: 10px;

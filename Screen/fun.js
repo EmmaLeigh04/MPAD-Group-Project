@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="../images/Clippy.webp" alt="Clippy" style="width:90px; position:absolute; left:70px; bottom:0; z-index:2;">
     `;
     document.body.appendChild(clippy);
-    document.getElementById('clippy-leave').onclick = () => { window.location.href = '../Story/conclusion.html'; };
+    document.getElementById('clippy-leave').onclick = () => { window.location.href = '../docs/conclusion.html'; };
     document.getElementById('clippy-stay').onclick = () => { clippy.querySelector('div').innerHTML = "Keep exploring!"; };
   }
 

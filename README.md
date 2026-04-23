@@ -23,7 +23,7 @@ Note that the lab computers may have vim as a default editor for commits. Vim ca
 *If you are experiencing trouble with git, try restarting your computer. If that doesn't work, switch to a lab computer for now and post in the forums with a screenshot of the error after the lab*
 3) Open the repository with PyCharm. You can do this by going file->open and selecting the cloned folder called `BIT2008-project-template`
 4) Open a terminal using PyCharm and install dependencies using `pip install -r requirements.txt`
-![install dependencies](readme_assets/run-terminal.jpg)
+![install dependencies](/Users/madelinefaulds/Desktop/school/2025-2026/MPAD2/MPAD-Group-Project-1/readme_assets/run-terminal.jpg)
 5) Create a file called `.env` in the top level directory (should be in the same folder as manage.py)
 6) Generate a secret key by running `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in the terminal. Copy the output.
 7) Edit `.env` (created in part 5) and add a line that says `SECRET_KEY="your-secret-key-here"`. Paste the output from part 6 into 'your-secret-key-here'.
