@@ -1,0 +1,110 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mail</title>
+  <link rel="stylesheet" href="{% static 'Screen/apps/mail/styles.css' %}">
+</head>
+<body>
+  <div class="mail-banner">
+    <img src="{% static 'images/mail.png' %}" alt="Windows Live Mail Beta">
+    <span>Learn how <b>Windows Live Mail Beta</b> can help you get organized.</span>
+    <span style="color:#888;font-size:13px;">© 2005 Microsoft</span>
+  </div>
+  <div class="mail-app">
+    <aside class="sidebar">
+      <button class="compose">Compose</button>
+      <ul class="folders">
+        <li class="active" data-folder="Inbox">Inbox <span class="count">(0)</span></li>
+        <li data-folder="Drafts">Drafts <span class="count">(0)</span></li>
+        <li data-folder="Sent">Sent <span class="count">(0)</span></li>
+        <li data-folder="Deleted">Deleted <span class="count">(0)</span></li>
+      </ul>
+    </aside>
+    <div class="main">
+      <div class="list">
+        <ul id="message-list"></ul>
+      </div>
+      <div class="preview" id="preview">
+        <div class="preview-header">
+          <h2 id="preview-subject">Select a message</h2>
+          <div id="preview-meta" class="preview-meta"></div>
+        </div>
+        <div id="preview-body" class="preview-body">Select a message to see the content.</div>
+      </div>
+    </div>
+    <div class="mail-side-ad">
+      <div style="font-weight:bold;font-size:16px;margin-bottom:12px;">What's on your mind?</div>
+      <div style="margin-bottom:18px;">Tell us what you think of <b>Windows Live Mail Beta</b></div>
+      <img src="{% static 'images/mail.png' %}" alt="Windows Live Mail Beta" style="height:32px;margin-bottom:12px;">
+      <div style="color:#888;font-size:13px;">© 2005 Microsoft</div>
+    </div>
+  </div>
+  <script>
+    const messages = [
+      {id:1, folder:'Inbox', from:"Savannah Partridge", subject:"I know its you.", date:"9:50 AM", body:"<p>I know it's you Monica, you better shut your mouth.</p>"},
+      {id:2, folder:'Inbox', from:"Theo Phillips", subject:"Theo Phillips", date:"12/3/2005", body:"<p>Monica, you are playing a dangerous game. You might think it's fun to ruin peoples lives, but someday, this will ruin yours too.</p>"},
+      {id:3, folder:'Inbox', from:"ML25049347940", subject:"David has to go.", date:"12/3/2005", body:"<p>Monica, oh Monica. Your pesky little boyfriend is standing betwen our eternal love... I need you to know, that if I can't have you, no one can.</p>"},
+      {id:4, folder:'Drafts', from:"Me", subject:"Draft: it's not you, its me...", date:"Today", body:"<p>Davie... You know I love you, but I can't be with you right now.</p>"},
+      {id:5, folder:'Drafts', from:"Me", subject:"Draft: I can't trust anyone else", date:"11:00 AM", body:`<p>Summer, I hate to put this weight on your shoulders, but I can't trust anyone else.<br>I'm supposed to meet with them tomorrow about it, but I have a bad feeling..</p><div class="attachment" style="display:inline-flex;align-items:center;margin-top:10px;padding:7px 12px 7px 8px;background:#e7f0ff;border:1px solid #bdbdbd;border-radius:5px;box-shadow:1px 1px 3px #eee;max-width:320px;"><img src="{% static 'icons/windowsIcons/newnote.png' %}" alt="Notepad icon" style="height:18px;width:18px;display:inline-block;vertical-align:middle;margin-right:8px;"><a href="/apps/evidence/" style="color:#1976d2;text-decoration:underline;font-size:14px;font-weight:bold;">evidence.txt</a><span style="color:#888;font-size:12px;margin-left:10px;">(attached by Monica)</span></div>`},
+      {id:6, folder:'Sent', from:"Me", subject:"Important Information", date:"10:00 AM", body:"<p>Hi, this is Ben Jones' daughter, Monica. I found something I think you'd all really like to see... Can I meet you at your office tomorrow morning? </p>"}
+    ];
+    let currentFolder = 'Inbox';
+    function updateFolderCounts() {
+      document.querySelectorAll('.folders li').forEach(li => {
+        const folder = li.dataset.folder;
+        const count = messages.filter(m => m.folder === folder).length;
+        const span = li.querySelector('.count');
+        if (span) span.textContent = `(${count})`;
+      });
+    }
+    function renderList() {
+      const list = document.getElementById('message-list');
+      list.innerHTML = '';
+      const filtered = messages.filter(m => m.folder === currentFolder);
+      filtered.forEach(m => {
+        const li = document.createElement('li');
+        li.className = 'msg';
+        li.dataset.id = m.id;
+        li.innerHTML = `<div class="sender">${m.from}</div><div class="subject">${m.subject}</div><div class="date">${m.date}</div>`;
+        li.addEventListener('click', () => showMessageById(m.id));
+        list.appendChild(li);
+      });
+      if (filtered.length === 0) {
+        document.getElementById('preview-subject').textContent = 'No messages';
+        document.getElementById('preview-meta').textContent = '';
+        document.getElementById('preview-body').textContent = 'There are no messages in this folder.';
+      }
+      updateFolderCounts();
+    }
+    function showMessageById(id){
+      const m = messages.find(x => x.id === Number(id));
+      if (!m) return;
+      document.getElementById('preview-subject').textContent = m.subject;
+      document.getElementById('preview-meta').textContent = m.from + ' — ' + m.date;
+      document.getElementById('preview-body').innerHTML = m.body;
+      document.querySelectorAll('#message-list li').forEach(el => el.classList.toggle('selected', el.dataset.id == id));
+    }
+    document.querySelectorAll('.folders li').forEach(li => {
+      li.addEventListener('click', () => {
+        document.querySelectorAll('.folders li').forEach(x => x.classList.remove('active'));
+        li.classList.add('active');
+        currentFolder = li.dataset.folder;
+        renderList();
+      });
+    });
+    updateFolderCounts();
+    renderList();
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.matches('a[href$="evidence/"]')) {
+        e.preventDefault();
+        if (window.parent && window.parent !== window && typeof window.parent.toggleApp === 'function') {
+          window.parent.toggleApp('evidence', 'Evidence');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

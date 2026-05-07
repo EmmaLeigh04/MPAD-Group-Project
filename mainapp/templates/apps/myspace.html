@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MySpace</title>
+  <link rel="stylesheet" href="{% static 'Screen/apps/browser/myspace.css' %}">
+</head>
+<body>
+  <div class="browser-toolbar">
+    <div class="browser-menu-row">
+      <span class="browser-menu-item">File</span>
+      <span class="browser-menu-item">Edit</span>
+      <span class="browser-menu-item">View</span>
+      <span class="browser-menu-item">Favourites</span>
+      <span class="browser-menu-item">Tools</span>
+      <span class="browser-menu-item">Help</span>
+    </div>
+    <div class="browser-icon-row">
+      <img src="{% static 'icons/windowsIcons/back.png' %}" alt="Back" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/forward.png' %}" alt="Forward" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/stop.png' %}" alt="Stop" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/refresh.png' %}" alt="Refresh" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/home.png' %}" alt="Home" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/zoomin.png' %}" alt="Zoom In" class="browser-toolbar-icon"><span style="margin-right:10px; font-size:14px; color:#222;">Search</span>
+      <img src="{% static 'icons/windowsIcons/favourites.png' %}" alt="Favourites" class="browser-toolbar-icon"><span style="margin-right:10px; font-size:14px; color:#222;">Favourites</span>
+      <img src="{% static 'icons/windowsIcons/mail.png' %}" alt="Mail" class="browser-toolbar-icon">
+    </div>
+    <div class="browser-address-row">
+      <label for="browser-address" class="browser-address-label">Address</label>
+      <input id="browser-address" class="browser-address-input" type="text" value="https://www.myspace.com" />
+      <img src="{% static 'icons/windowsIcons/searchgo.png' %}" alt="Go" class="browser-address-icon">
+    </div>
+  </div>
+  <div class="myspace-container">
+    <div class="myspace-header">
+      <img src="{% static 'images/myspacelogo2.png' %}" alt="myspaceID" class="myspace-id-logo">
+    </div>
+    <div class="myspace-content">
+      <div class="link-section">
+        <div class="link-icons">
+          <span class="site-label">myspace.com<br><small>a place for friends..</small></span>
+          <span class="arrows">&#8644;</span>
+          <span class="site-label">my 8 bit music</span>
+        </div>
+        <p class="link-text">Link <b>my 8 bit music</b> with your MySpace profile info, friends and content.</p>
+      </div>
+      <div class="login-form">
+        <div class="form-row">
+          <label for="email">Username:</label>
+          <input type="text" id="email" name="email" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" autocomplete="off">
+        </div>
+        <div class="form-buttons">
+          <button class="btn-continue">Continue</button>
+          <button class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="myspace-disclaimer">
+      <p>The service you are linking to is not provided by MySpace. If you choose to link to this service, it may share your data in accordance with the privacy policy of and your privacy settings on the linked service. To revoke access to this linked service and for more information visit the <a href="#">MySpaceID</a> section of your MySpace account.</p>
+    </div>
+    <div class="myspace-footer">
+      &copy;2003-2009 MySpace.com. All Rights Reserved.
+    </div>
+  </div>
+  <script>
+    document.querySelector('.btn-continue').addEventListener('click', function(e) {
+      var username = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      if (username === 'YouKnowYouHateMe' && password === '12345') {
+        window.location.href = '/apps/browser/myspacewall/';
+      }
+    });
+  </script>
+</body>
+</html>

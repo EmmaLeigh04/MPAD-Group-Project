@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const appMap = {
-    notepad: 'apps/notepad/index.html',
-    mail: 'apps/mail/index.html',
-    documents: 'apps/documents/index.html',
-    browser: 'apps/browser/index.html',
-    encrypted: 'apps/documents/encrypted.html',
-    secret: 'apps/secret/secret.html',
-    evidence: 'apps/secret/evidence.html'
+    notepad: '/apps/notepad/',
+    mail: '/apps/mail/',
+    documents: '/apps/documents/',
+    browser: '/apps/browser/',
+    encrypted: '/apps/documents/',
+    secret: '/apps/secret/',
+    evidence: '/apps/evidence/'
   };
   const windows = document.getElementById('windows');
   let topZ = 100;
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let documentsIcon = win.querySelector('.np2-titlebar-icon.documents-icon');
       if (!documentsIcon) {
         documentsIcon = document.createElement('img');
-        documentsIcon.src = '../icons/windowsIcons/documents.png';
+        documentsIcon.src = '/static/icons/windowsIcons/documents.png';
         documentsIcon.alt = 'Documents icon';
         documentsIcon.className = 'np2-titlebar-icon documents-icon';
         documentsIcon.style.height = '20px';
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let noteIcon = win.querySelector('.np2-titlebar-icon.note-icon');
       if (!noteIcon) {
         noteIcon = document.createElement('img');
-        noteIcon.src = '../icons/windowsIcons/newnote.png';
+        noteIcon.src = '/static/icons/windowsIcons/newnote.png';
         noteIcon.alt = 'Note icon';
         noteIcon.className = 'np2-titlebar-icon note-icon';
         noteIcon.style.height = '20px';
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let mailIcon = win.querySelector('.np2-titlebar-icon.mail-icon');
       if (!mailIcon) {
         mailIcon = document.createElement('img');
-        mailIcon.src = '../icons/windowsIcons/mail.png';
+        mailIcon.src = '/static/icons/windowsIcons/mail.png';
         mailIcon.alt = 'Mail icon';
         mailIcon.className = 'np2-titlebar-icon mail-icon';
         mailIcon.style.height = '20px';
@@ -243,16 +243,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // wire icons: single-click, double-click or Enter to open
     document.querySelectorAll('.icon').forEach(icon => {
-      // Toggle app on double-click or Enter
-      icon.addEventListener('dblclick', () => toggleApp(icon.dataset.app));
-      icon.addEventListener('keydown', e => { if (e.key === 'Enter') toggleApp(icon.dataset.app); });
+      // Toggle app on double-click or Enter (use window.toggleApp so the Clippy-tracking patch is always used)
+      icon.addEventListener('dblclick', () => window.toggleApp(icon.dataset.app));
+      icon.addEventListener('keydown', e => { if (e.key === 'Enter') window.toggleApp(icon.dataset.app); });
     });
 
   // expose for debugging
   window.openAppIframe = openAppIframe;
 
-  // Track opened apps for Clippy
-  const allApps = Object.keys(appMap);
+  // Track opened apps for Clippy (exclude 'encrypted' — it's an alias, not a real icon)
+  const allApps = Object.keys(appMap).filter(a => a !== 'encrypted');
   let openedApps = JSON.parse(sessionStorage.getItem('openedApps') || '[]');
   let clippyShown = sessionStorage.getItem('clippyShown') === 'true';
 
@@ -284,10 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="position:absolute; left:70px; bottom:-22px; width:0; height:0; z-index:2; border-left:18px solid transparent; border-right:18px solid transparent; border-top:22px solid #222;"></div>
         <div style="position:absolute; left:72px; bottom:-20px; width:0; height:0; z-index:3; border-left:16px solid transparent; border-right:16px solid transparent; border-top:20px solid #f9e79f;"></div>
       </div>
-      <img src="../images/Clippy.webp" alt="Clippy" style="width:90px; position:absolute; left:70px; bottom:0; z-index:2;">
+      <img src="/static/images/Clippy.webp" alt="Clippy" style="width:90px; position:absolute; left:70px; bottom:0; z-index:2;">
     `;
     document.body.appendChild(clippy);
-    document.getElementById('clippy-leave').onclick = () => { window.location.href = '../docs/conclusion.html'; };
+    document.getElementById('clippy-leave').onclick = () => { window.location.href = '/conclusion/'; };
     document.getElementById('clippy-stay').onclick = () => { clippy.querySelector('div').innerHTML = "Keep exploring!"; };
   }
 

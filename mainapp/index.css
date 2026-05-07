@@ -1,0 +1,330 @@
+/* This file is a copy of your root index.css for Django static serving. */
+#p31 {
+    margin-left: 8%;
+    width: 420px;
+    border-width: 4px 3px 6px 5px;
+    border-style: dashed;
+    border-radius: 95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+#p32 {
+    margin-left: 40%;
+    width: 350px;
+    border-width: 3px 4px 3px 5px;
+    border-style: dotted;
+    border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+}
+#p33 {
+    margin-left: 12%;
+    width: 480px;
+    border-width: 5px 3px 3px 5px;
+    border-style: solid;
+    border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+    transform: rotate(2deg);
+}
+#p34 {
+    margin-left: 35%;
+    width: 320px;
+    border-width: 8px 8px 3px 5px;
+    border-style: dashed;
+    border-radius: 4% 95% 6% 95%/94% 5% 90% 5%;
+    transform: rotate(-2deg);
+}
+#p35 {
+    margin-left: 10%;
+    width: 420px;
+    border-width: 4px 3px 6px 5px;
+    border-style: dashed;
+    border-radius: 95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+#p36 {
+    margin-left: 30%;
+    width: 350px;
+    border-width: 3px 4px 3px 5px;
+    border-style: dotted;
+    border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+}
+#p37 {
+    margin-left: 15%;
+    width: 480px;
+    border-width: 5px 3px 3px 5px;
+    border-style: solid;
+    border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+    transform: rotate(2deg);
+}
+#p38 {
+    margin-left: 30%;
+    width: 320px;
+    border-width: 8px 8px 3px 5px;
+    border-style: dashed;
+    border-radius: 4% 95% 6% 95%/94% 5% 90% 5%;
+    transform: rotate(-2deg);
+}
+#p39 {
+    margin-left: 20%;
+    width: 350px;
+    border-width: 3px 4px 3px 5px;
+    border-style: dotted;
+    border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+}
+#p25 {
+    margin-left: 12%;
+    width: 420px;
+    border-width: 4px 3px 6px 5px;
+    border-style: dashed;
+    border-radius: 95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+#p26 {
+    margin-left: 55%;
+    width: 350px;
+    border-width: 3px 4px 3px 5px;
+    border-style: dotted;
+    border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+}
+#p27 {
+    margin-left: 20%;
+    width: 480px;
+    border-width: 5px 3px 3px 5px;
+    border-style: solid;
+    border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+    transform: rotate(2deg);
+}
+#p28 {
+    margin-left: 60%;
+    width: 320px;
+    border-width: 8px 8px 3px 5px;
+    border-style: dashed;
+    border-radius: 4% 95% 6% 95%/94% 5% 90% 5%;
+    transform: rotate(-2deg);
+}
+.p {
+    display: block;
+    font-size: 2rem;
+    opacity: 0;
+    margin: 5%;
+    position: relative;
+    padding: 25px;
+    background-color: rgba(248, 227, 227, 0.4);
+    border: solid rgb(120, 15, 15);
+    transition: transform 0.3s, opacity 0.3s;
+    will-change: opacity, transform;
+}
+.computer {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.computerWrapper {
+    position: relative;
+    width: 90vw;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 0;
+    overflow: visible;
+    aspect-ratio: 4/3;
+    height: auto;
+}
+#computer {
+    width: 100%;
+    height: auto;
+    max-width: 100vw;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+    aspect-ratio: 4/3;
+    transition: width 0.3s, height 0.3s;
+}
+#screen {
+    position: relative;
+    padding: 25px;
+    background-color: rgba(248, 227, 227, 0.4);
+    border: solid rgb(117, 27, 27);
+    border-color: rgb(120, 15, 15);
+    transition: transform 0.3s ease;
+}
+
+#p3, #p8, #p11, #p13, #p19, #p22 {
+    border-width: 3px 4px 3px 5px;
+    border-style: dashed;
+    border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+
+#p1, #p5, #p9, #p12, #p17, #p20, #p24 {
+    width:350px;
+    border-width: 3px 3px 5px 5px;
+    border-style: dotted;
+    border-radius:4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+}
+
+#p2, #p6, #p10, #p14, #p18, #p23 {
+    border-width: 5px 3px 3px 5px;
+    border-radius:95% 4% 97% 5%/4% 94% 3% 95%;
+    transform: rotate(2deg);
+}
+
+#p4, #p7, #p16, #p15, #p21 {
+    border-width: 8px, 8px, 3px, 5px;
+    border-radius: 4% 95% 6% 95%/94% 5% 90% 5%;
+    transform: rotate(-2deg)
+}
+
+.transition {
+    font-size: medium;
+    justify-content: center;
+    text-align: center;
+}
+
+#p1 { margin-left: 10%; width: 350px; margin-top: 20% }
+#p2 { margin-left: 55%; width: 400px; margin-top: -50px; } /* Overlap slightly */
+#p3 { margin-left: 20%; width: 450px; }
+#p4 { margin-left: 50%; width: 300px; }
+#p5 { margin-left: 15%; width: 250px; font-weight: bold; }
+
+/* Transitioning into the 21 Years Later section */
+#p6 { margin-left: 45%; width: 420px; }
+#p7 { margin-left: 10%; width: 380px; }
+#p8 { margin-left: 30%; width: 500px; }
+
+/* Inseparable friends section */
+#p9  { margin-left: 5%; width: 350px; }
+#p10 { margin-left: 50%; width: 400px; }
+#p11 { margin-left: 25%; width: 450px; }
+
+/* Walking up to the house */
+#p12 { margin-left: 15%; width: 400px; }
+#p13 { margin-left: 60%; width: 300px; }
+#p14 { margin-left: 10%; width: 450px; }
+#p15 { margin-left: 40%; width: 400px; }
+
+/* Inside the room */
+#p18 { margin-left: 20%; width: 400px; }
+#p20 { margin-left: 55%; width: 350px; }
+#p22 { margin-left: 10%; width: 500px; }
+#p24 { margin-left: 30%; width: 400px; font-style: italic; }
+
+.image {
+    justify-content: center;
+}
+
+#computer {
+    width: 100%;
+    height: auto;
+}
+
+#screen {
+    position: absolute;
+    top: 15.3%;
+    left: 26.1%;
+    width: 37.2%;
+    height: 42.2%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    image-rendering: pixelated;
+    z-index: 2;
+
+}
+.computer {
+    width: 100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.computerWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 0;
+    overflow: hidden;
+}
+
+#screenGlow {
+    position: absolute;
+    top: 12.5%;
+    left: 26.1%;
+    width: 37.2%;
+    height: 42.2%;
+    background-color: rgb(27, 41, 41);
+    z-index: 1;
+    overflow: hidden;
+}
+
+#screenGlow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #c4e6f4;
+    box-shadow: 0 0 10px #c8f3fb, 0 0 20px #aeefef;
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+#scanLines {
+    position: absolute;
+    top: 12.5%;
+    left: 26.1%;
+    width: 37.2%;
+    height: 42.2%;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.15) 50%
+    ),
+    linear-gradient(
+        90deg, rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03)
+        );
+    background-size: 100% 3px, 3px 100%;
+    opacity: 0.6;
+}
+
+#mc-iframe {
+    position: absolute;
+    top: 12.5%;
+    left: 26.1%;
+    width: 37.2%;
+    height: 42.2%;
+    border: none;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#zapLine {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #c4e6f4;
+    box-shadow: 0 0 10px #c8f3fb, 0 0 20px #aeefef;
+    opacity: 0;
+    z-index: 4;
+    transform: scaleX(0)
+}
+
+@media (max-width: 768px) {
+    .p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 90% !important;
+        max-width: none;
+    }
+}

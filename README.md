@@ -1,44 +1,87 @@
-# project-template
+# Monica's Story — Interactive Mystery
 
-*Do not submit this as your project README. I expect you to provide instructions for me, the instructor, to set up and run your application. To help you, this README currently provides some instructions to you, and I expect you to change it before you submit your backend deliverable.*
+A scrolling mystery story with a fully interactive Windows XP-style desktop. Scroll through Monica's story, then explore her computer to uncover the truth before the conclusion is revealed. 
 
-This is the repository that you should use for your term project. It does not have yet have any apps.
+---
 
-## Prerequisites (for your personal computers)
+## Setup & Launch
 
-* Ensure Python is installed: https://www.python.org/downloads/
-* Ensure Pycharm is installed: https://www.jetbrains.com/pycharm/download/?section=windows
-* Ensure Git is installed: https://git-scm.com/downloads
+### Requirements
+- Python 3.10 or higher
+- pip
 
-If you needed to install Python or Git, you'll need to restart your computer before continuing.
+### Steps
 
-## Steps to get this django application running on your own PC
+1. **Clone or download the repository**
 
-Note that the lab computers may have vim as a default editor for commits. Vim can be scary. I recommend using nano. 
+2. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-**TL;DR: run this command before doing anything else:** `git config --global core.editor "nano"` 
+3. **Create a `.env` file** in the project root folder (same level as `manage.py`) with the following content:
+    ```
+    SECRET_KEY=any-random-string-you-choose
+    ```
+    For example:
+    ```
+    SECRET_KEY=django-insecure-abc123xyz
+    ```
 
-1) Open a terminal and navigate to the folder you want to create your project in (e.g. `cd ~Documents/Code`)
-2) Clone this repository with `git clone <link to this repository>`
-*If you are experiencing trouble with git, try restarting your computer. If that doesn't work, switch to a lab computer for now and post in the forums with a screenshot of the error after the lab*
-3) Open the repository with PyCharm. You can do this by going file->open and selecting the cloned folder called `BIT2008-project-template`
-4) Open a terminal using PyCharm and install dependencies using `pip install -r requirements.txt`
-![install dependencies](/Users/madelinefaulds/Desktop/school/2025-2026/MPAD2/MPAD-Group-Project-1/readme_assets/run-terminal.jpg)
-5) Create a file called `.env` in the top level directory (should be in the same folder as manage.py)
-6) Generate a secret key by running `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` in the terminal. Copy the output.
-7) Edit `.env` (created in part 5) and add a line that says `SECRET_KEY="your-secret-key-here"`. Paste the output from part 6 into 'your-secret-key-here'.
-8) On the terminal, run `python manage.py migrate`
-9) Run the server by clicking the play button or running `python manage.py runserver` on the terminal
-10) Navigate to 127.0.0.1:8000! You should get a success message in your web browser.
+4. **Run migrations:**
+    ```bash
+    python manage.py migrate
+    ```
 
-## Mandatory Configuration Steps
+5. **Start the development server:**
+    ```bash
+    python manage.py runserver
+    ```
 
-1. Create a new **Django App** by running `python manage.py startapp <app_name>`. The app name should be relevant to the purpose of your project: e.g. `workouttracker` for a workout tracker.
-2. Commit and push your changes. After doing this, verify that your changes have been made on GitHub. You can commit and push by running the following commands: 
-    * `git add .` (stage all modified files for commit)
-    * `git commit -m "add django app"` (take snapshot of changes with message "add django app")
-    * `git push origin main` (push new snapshots to GitHub)
-3. Add the app to your list of INSTALLED_APPS in your `settings.py`
-4. Create a `urls.py` in your app, and configure the `urls.py` in your project to include your app's `urls.py`
-5. Create a simple "hello world" view - if someone makes a request to `127.0.0.1:8000/`, they should get an HTTP Response that says "Hello World!"
-6. Commit and push your changes again
+6. **Open your browser and go to:**
+    ```
+    http://127.0.0.1:8000/
+    ```
+
+---
+
+## How to Play
+
+1. **Scroll down** through Monica's story on the homepage. Read through the narrative as it unfolds.
+
+2. **At the bottom of the story**, you will see Monica's computer appear. **Click anywhere on the screen** to boot it up.
+
+3. You will be taken to a **Windows XP-style desktop**. Double-click the icons to open apps:
+    - **Internet Explorer** — Browse to MySpace (hint: use Monica's passwords to log in)
+    - **Mail** — Read Monica's emails
+    - **Notepad** — Read her diary entry
+    - **Documents** — Explore her files (includes hidden documents)
+
+4. **Open all the apps** to see everything. Once you've explored them all, **Clippy will appear** and ask if you'd like to find out the truth.
+
+5. Click **Yes** to read the conclusion of the story.
+
+### Passwords (found in the Documents app)
+- MySpace username: `YouKnowYouHateMe`
+- MySpace password: `12345`
+
+---
+
+## Project Structure
+
+```
+manage.py               — Django entry point
+termproject/            — Django project settings and URL config
+mainapp/                — Main Django app (views, URLs, templates)
+  templates/            — All HTML templates
+    index.html          — Story homepage
+    welcome.html        — Boot/splash screen
+    screen.html         — Windows XP desktop
+    apps/               — Individual desktop app pages
+    conclusion.html     — Ending of the story
+docs/                   — Scroll animation JS and CSS
+Screen/                 — Desktop JS (fun.js, mc.js) and app source files
+images/                 — Story and UI images
+sounds/                 — Audio files
+icons/                  — Windows XP icons
+```

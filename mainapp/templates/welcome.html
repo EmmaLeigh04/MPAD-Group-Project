@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="{% static 'mainapp/welcome.css' %}">
+</head>
+<body>
+  <audio id="startup-audio" src="{% static 'sounds/windowstartsound.mp3' %}"></audio>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('startup-audio');
+      if (window.top === window.self && audio) {
+        setTimeout(function() {
+          var playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(function() {
+              var playOnUser = function() {
+                audio.play();
+                document.body.removeEventListener('click', playOnUser);
+              };
+              document.body.addEventListener('click', playOnUser);
+            });
+          }
+        }, 600);
+      }
+      document.body.addEventListener('click', function() {
+        window.location.href = '/screen/';
+      });
+    });
+  </script>
+</body>
+</html>

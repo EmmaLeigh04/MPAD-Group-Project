@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Untitled - Notepad2</title>
+  <link rel="stylesheet" href="{% static 'Screen/apps/secret/evidence.css' %}">
+</head>
+<body>
+  <div class="np2-window">
+    <div class="np2-menu">
+      <span class="np2-menu-item">File</span>
+      <span class="np2-menu-item">Edit</span>
+      <span class="np2-menu-item">View</span>
+      <span class="np2-menu-item">Settings</span>
+      <span class="np2-menu-item">?</span>
+    </div>
+    <div class="np2-toolbar">
+      <span class="np2-toolbar-btn" title="New">
+        <img src="{% static 'icons/windowsIcons/newnote.png' %}" alt="New" style="height:20px;width:20px;vertical-align:middle;">
+      </span>
+      <span class="np2-toolbar-btn" title="Open">
+        <img src="{% static 'icons/windowsIcons/open.png' %}" alt="Open" style="height:20px;width:20px;vertical-align:middle;">
+      </span>
+      <span class="np2-toolbar-btn" title="Save">
+        <img src="{% static 'icons/windowsIcons/save.png' %}" alt="Save" style="height:20px;width:20px;vertical-align:middle;">
+      </span>
+    </div>
+    <textarea class="np2-editor" spellcheck="false">EMPLOYEE EXPENSE REPORT - Q1 2005
+------------------------------------------------------
+| Name         | Dept     | Date       | Amount  | Description         |
+------------------------------------------------------
+| Frank Jones   | Finance  | 01/10/2005 | $1,200  | Office Supplies     |
+| Frank Jones   | Finance  | 01/24/2005 | $950    | "Consulting"       |
+| Frank Jones   | Finance  | 02/03/2005 | $2,500  | Equipment Purchase  |
+| Frank Jones   | Finance  | 02/17/2005 | $3,000  | "Travel"           |
+| Frank Jones   | Finance  | 03/01/2005 | $4,800  | "Client Meeting"   |
+| Frank Jones   | Finance  | 03/15/2005 | $5,000  | "Miscellaneous"    |
+------------------------------------------------------
+TOTAL (Q1): $17,450
+
+*Note: Multiple entries flagged for review. Amounts and descriptions do not match company records. Suspected embezzlement by Frank Jones (Finance Dept).
+</textarea>
+    <div class="np2-statusbar">
+      Ln 1 : 1   Col 1   Sel 0   0 Bytes   ANSI   CR+LF   INS   Default Text
+    </div>
+  </div>
+</body>
+</html>

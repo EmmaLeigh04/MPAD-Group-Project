@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Documents</title>
+  <link rel="stylesheet" href="{% static 'Screen/apps/documents/styles.css' %}">
+</head>
+<body>
+  <div class="documents-app">
+    <div class="explorer-toolbar">
+      <img src="{% static 'icons/windowsIcons/folder.png' %}" alt="New Folder" class="explorer-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/up.png' %}" alt="Up" class="explorer-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/view-info.ico' %}" alt="Properties" class="explorer-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/refresh.png' %}" alt="Refresh" class="explorer-toolbar-icon">
+    </div>
+    <div class="documents-explorer">
+      <div class="explorer-header">C:\...\My Documents\</div>
+      <ul class="explorer-list">
+        <li id="open-summer-folder"><span class="folder"></span>Me + Summer </li>
+        <li id="open-bf-folder"><span class="folder"></span>Me + BF</li>
+        <li><span class="folder"></span>My Music</li>
+        <li><span class="folder"></span>My Pictures</li>
+        <li><span class="folder"></span>My Videos</li>
+        <li><span class="file"></span>Watcha Doin?</li>
+        <li id="open-secret-doc"><span class="file"></span>Shhh Secret!.txt</li>
+        <li id="open-evidence-doc"><span class="file"></span>Evidence.txt</li>
+      </ul>
+    </div>
+    <div class="explorer-tabs">
+      <span class="tab active">Solution Explorer</span>
+      <span class="tab">Server Explorer</span>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var secretDoc = document.getElementById('open-secret-doc');
+      if (secretDoc) {
+        secretDoc.addEventListener('click', function() {
+          if (window.parent && window.parent !== window && typeof window.parent.toggleApp === 'function') {
+            window.parent.toggleApp('secret', 'Shhh Secret!');
+          }
+        });
+      }
+      var evidenceDoc = document.getElementById('open-evidence-doc');
+      if (evidenceDoc) {
+        evidenceDoc.addEventListener('click', function() {
+          if (window.parent && window.parent !== window && typeof window.parent.toggleApp === 'function') {
+            window.parent.toggleApp('evidence', 'Evidence');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

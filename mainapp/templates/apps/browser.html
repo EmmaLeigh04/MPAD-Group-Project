@@ -1,0 +1,99 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Google</title>
+  <link rel="stylesheet" href="{% static 'Screen/apps/browser/styles.css' %}">
+</head>
+<body>
+  <div class="browser-toolbar">
+    <div class="browser-menu-row">
+      <span class="browser-menu-item">File</span>
+      <span class="browser-menu-item">Edit</span>
+      <span class="browser-menu-item">View</span>
+      <span class="browser-menu-item">Favourites</span>
+      <span class="browser-menu-item">Tools</span>
+      <span class="browser-menu-item">Help</span>
+    </div>
+    <div class="browser-icon-row">
+      <img src="{% static 'icons/windowsIcons/back.png' %}" alt="Back" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/forward.png' %}" alt="Forward" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/stop.png' %}" alt="Stop" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/refresh.png' %}" alt="Refresh" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/home.png' %}" alt="Home" class="browser-toolbar-icon">
+      <img src="{% static 'icons/windowsIcons/zoomin.png' %}" alt="Zoom In" class="browser-toolbar-icon"><span style="margin-right:10px; font-size:14px; color:#222;">Search</span>
+      <img src="{% static 'icons/windowsIcons/favourites.png' %}" alt="Favourites" class="browser-toolbar-icon"><span style="margin-right:10px; font-size:14px; color:#222;">Favourites</span>
+      <img src="{% static 'icons/windowsIcons/mail.png' %}" alt="Mail" class="browser-toolbar-icon">
+    </div>
+    <div class="browser-address-row">
+      <label for="browser-address" class="browser-address-label">Address</label>
+      <input id="browser-address" class="browser-address-input" type="text" value="https://www.google.com" />
+      <img src="{% static 'icons/windowsIcons/searchgo.png' %}" alt="Go" class="browser-address-icon">
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="google-logo">
+      <img src="{% static 'images/google-logo.png' %}" alt="Google logo" style="width:350px;max-width:90vw;">
+    </div>
+    <div class="links">
+      <b>Web</b>
+      <a href="#">Images</a>
+      <a href="#">Groups</a>
+      <a href="#">News</a>
+      <a href="#">Froogle</a>
+      <a href="#">Local</a>
+      <a href="#">more »</a>
+      <span class="right-links">
+        <a href="#">Advanced Search</a> |
+        <a href="#">Preferences</a> |
+        <a href="#">Language Tools</a>
+      </span>
+    </div>
+    <form class="search-bar" onsubmit="return false;">
+      <div class="input-wrapper">
+        <input id="search-input" type="text" name="q" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox">
+        <div id="suggestion-list">
+          <div id="myspace-suggestion">
+            https://www.myspace.com
+          </div>
+        </div>
+      </div>
+      <div>
+        <button>Google Search</button>
+        <button>I'm Feeling Lucky</button>
+      </div>
+    </form>
+    <div class="footer">
+      <a href="#">Advertising Programs</a> - <a href="#">About Google</a>
+      <div class="copyright">
+        ©2005 Google - Searching 8,058,044,651 web pages
+      </div>
+    </div>
+  </div>
+  <script>
+    const searchInput = document.getElementById('search-input');
+    const suggestionList = document.getElementById('suggestion-list');
+    const myspaceSuggestion = document.getElementById('myspace-suggestion');
+    if (searchInput && suggestionList && myspaceSuggestion) {
+      searchInput.addEventListener('focus', () => suggestionList.style.display = 'block');
+      searchInput.addEventListener('input', () => suggestionList.style.display = 'block');
+      searchInput.addEventListener('blur', () => setTimeout(() => { suggestionList.style.display = 'none'; }, 120));
+      myspaceSuggestion.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        searchInput.value = 'https://www.myspace.com';
+        suggestionList.style.display = 'none';
+      });
+    }
+    document.querySelector('.search-bar').addEventListener('submit', function(e) { e.preventDefault(); });
+    var searchBtn = document.querySelectorAll('.search-bar button')[0];
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim().toLowerCase().includes('myspace')) {
+          window.location.href = '/apps/browser/myspace/';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

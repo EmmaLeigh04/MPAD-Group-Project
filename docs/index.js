@@ -23,7 +23,7 @@ $(function () {
         duration: "200%"
     })
     .on("end", function () {
-        window.location.href = "../welcome.html";
+        window.location.href = "/welcome/";
     })
     .addTo(controller);
         // build scenes
